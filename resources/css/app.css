@@ -1,4 +1,235 @@
-@import "tailwindcss" theme(static);
+@import "tailwindcss";
 @source "../../app/**/*.php";
 @source "../**/*.blade.php";
 @source "../**/*.js";
+
+@layer base {
+	html {
+		scroll-behavior: smooth;
+	}
+
+	body {
+		background: #f5f3ef;
+		color: #1c1d47;
+		font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+		text-rendering: optimizeLegibility;
+	}
+
+	h1,
+	h2,
+	h3,
+	.font-serif {
+		font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+	}
+
+	::selection {
+		background: #fee1a2;
+		color: #1c1d47;
+	}
+}
+
+a {
+  text-decoration: none;
+}
+
+.contact-cf7 .wpcf7-form {
+  max-width: 710px;
+}
+
+.contact-cf7 .cf7-contact-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 28px;
+  row-gap: 28px;
+}
+
+.contact-cf7 label {
+  display: block;
+}
+
+.contact-cf7 label span {
+  display: block;
+  margin-bottom: 8px;
+  color: rgb(28 29 71 / 0.88);
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1;
+}
+
+.contact-cf7 .cf7-line,
+.contact-cf7 .cf7-textarea {
+  width: 100%;
+  border: 0;
+  border-bottom: 1px solid rgb(28 29 71 / 0.12);
+  background: transparent;
+  color: #1c1d47;
+  font-size: 15px;
+  font-weight: 300;
+  outline: none;
+  border-radius: 0;
+}
+
+.contact-cf7 .cf7-line {
+  height: 35px;
+}
+
+.contact-cf7 .cf7-textarea {
+  height: 156px;
+  resize: none;
+}
+
+.contact-cf7 .cf7-message {
+  margin-top: 27px;
+}
+
+.contact-cf7 .cf7-acceptance {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 24px;
+  color: #1c1d47;
+  font-size: 15px;
+  font-weight: 300;
+  line-height: 1.4;
+}
+
+.contact-cf7 .cf7-acceptance .wpcf7-list-item {
+  margin: 0;
+}
+
+.contact-cf7 .cf7-acceptance input[type='checkbox'] {
+  width: 19px;
+  height: 19px;
+  margin: 0;
+  border: 1px solid rgb(28 29 71 / 0.12);
+  appearance: none;
+  background: transparent;
+}
+
+.contact-cf7 .cf7-acceptance input[type='checkbox']:checked {
+  background: #d8b96f;
+  box-shadow: inset 0 0 0 4px #fafaf8;
+}
+
+.contact-cf7 .cf7-submit {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 151px;
+  height: 36px;
+  margin-top: 24px;
+  border: 1px solid #d8b96f;
+  background: transparent;
+  color: #1c1d47;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.42em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+.contact-cf7 .wpcf7-spinner {
+  display: none;
+}
+
+.contact-cf7 .wpcf7-not-valid-tip {
+  margin-top: 6px;
+  font-size: 12px;
+  color: #1c1d47;
+}
+
+.contact-cf7 .wpcf7-response-output {
+  margin: 22px 0 0;
+  padding: 12px 0 0;
+  border: 0;
+  color: #1c1d47;
+  font-size: 13px;
+  font-weight: 300;
+}
+
+.contact-map iframe {
+  width: 100%;
+  height: 100%;
+  display: block;
+  filter: grayscale(1);
+}
+
+@media (max-width: 767px) {
+  .contact-cf7 .cf7-contact-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+body.has-open-menu {
+  overflow: hidden;
+}
+
+.site-menu-dialog {
+  border: 0;
+}
+
+.site-menu-dialog::backdrop {
+  background: transparent;
+}
+
+.site-menu-dialog[open] {
+  animation: menuFadeIn 180ms ease-out;
+}
+
+@keyframes menuFadeIn {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+.site-menu-list {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.site-menu-list a {
+  color: #ffffff;
+  font-family: serif;
+  font-size: 72px;
+  font-weight: 400;
+  line-height: 0.95;
+  letter-spacing: -0.045em;
+  text-decoration: none;
+}
+
+.site-menu-list a:hover {
+  color: #fee1a2;
+}
+
+.site-menu-list .current-menu-item > a,
+.site-menu-list .current-menu-ancestor > a {
+  color: #fee1a2;
+}
+
+.lang-item,
+.lang-item a {
+  list-style: none;
+}
+
+header img,
+.site-menu-dialog img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+}
+
+@media (max-width: 767px) {
+  .site-menu-list a {
+    font-size: 48px;
+  }
+}
