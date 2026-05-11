@@ -1,4 +1,6 @@
 @import "tailwindcss";
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
 @source "../../app/**/*.php";
 @source "../**/*.blade.php";
 @source "../**/*.js";
@@ -232,4 +234,36 @@ header img,
   .site-menu-list a {
     font-size: 48px;
   }
+}
+
+
+.privacy-policy-content p {
+  margin-bottom: 22px;
+}
+
+.privacy-policy-content strong {
+  display: block;
+  margin-bottom: 8px;
+  color: #1c1d47;
+  font-size: 20px;
+  font-weight: 300;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+}
+
+.privacy-policy-content a {
+  color: #1c1d47;
+  text-decoration: underline;
+  text-decoration-color: #d8b96f;
+  text-underline-offset: 4px;
+}
+
+.privacy-policy-content ul,
+.privacy-policy-content ol {
+  margin: 0 0 22px 18px;
+  padding: 0;
+}
+
+.privacy-policy-content li {
+  margin-bottom: 8px;
 }

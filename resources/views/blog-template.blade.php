@@ -15,26 +15,28 @@
             'paged' => $paged,
         ]);
 
-        $fallbackImage = asset('images/blog/blog-placeholder.jpg');
+        $fallbackImage = asset('resources/images/blog1.png');
     @endphp
 
-    <section class="min-h-screen bg-[#FAFAF8] pb-[74px] text-[#1C1D47]">
-        <div class="mx-auto max-w-[990px] px-6 pt-[30px] md:px-0">
+    <section class="mt-19.5 min-h-screen bg-[#FAFAF8] pb-18.5 text-[#1C1D47]">
+        <div class="mx-auto max-w-260.75 px-6 pt-7.5 md:px-0">
             {{-- Breadcrumbs --}}
-            <div class="mb-[65px] text-[14px] font-light leading-none text-[#1C1D47]/25">
+            <div class="mb-16.25 text-[14px] font-light leading-none text-[#1C1D47]/25">
                 <a href="{{ home_url('/') }}">
                     Strona Główna
                 </a>
 
-                <span class="mx-[5px]">-</span>
+                <span class="mx-1.25">-</span>
 
                 <span>Blog</span>
             </div>
 
             {{-- Page heading --}}
-            <div class="mb-[82px]">
-                <div class="mb-[20px] text-[#D8B96F]">
-                    <span class="text-[13px] leading-none tracking-[0.16em]">▸▸▸</span>
+            <div class="mb-20.5">
+                <div class="mb-4 flex">
+                    <img src="{{ asset('resources/images/rec.svg') }}" alt="">
+                    <img src="{{ asset('resources/images/rec.svg') }}" alt="">
+                    <img src="{{ asset('resources/images/rec.svg') }}" alt="">
                 </div>
 
                 <h1
@@ -45,40 +47,42 @@
 
             {{-- Posts --}}
             @if ($blogQuery->have_posts())
-                <div class="mx-auto max-w-[820px] space-y-[29px]">
+                <div class="mx-auto max-w-236.25 space-y-7.25">
                     @while ($blogQuery->have_posts())
                         @php
                             $blogQuery->the_post();
 
                             $postImage = get_the_post_thumbnail_url(get_the_ID(), 'large') ?: $fallbackImage;
                             $postTitle = get_the_title();
-                            $postExcerpt = get_the_excerpt();
+                            $postExcerpt =
+                                get_the_excerpt() ?:
+                                'Ochrona relacji z dzieckiem wymaga odpowiednio zaplanowanych działań prawnych i właściwego przygotowania materiału dowodowego.';
 
                             if (!$postExcerpt) {
                                 $postExcerpt = wp_trim_words(wp_strip_all_tags(get_the_content()), 18);
                             }
                         @endphp
 
-                        <article class="grid grid-cols-1 gap-[82px] md:grid-cols-[315px_1fr] md:items-center">
-                            <a href="{{ get_permalink() }}" class="block h-[214px] w-full overflow-hidden bg-neutral-200">
+                        <article
+                            class="grid grid-cols-1 gap-10 md:gap-24.5 md:grid-cols-[360px_1fr] md:items-center mb-25 md:mb-0">
+                            <a href="{{ get_permalink() }}" class="block w-90 h-full overflow-hidden bg-neutral-200">
                                 <img src="{{ $postImage }}" alt="{{ esc_attr($postTitle) }}"
                                     class="h-full w-full object-cover grayscale">
                             </a>
 
-                            <div class="max-w-[380px] pt-[2px]">
-                                <h2
-                                    class="mb-[12px] text-[22px] font-light leading-[1.18] tracking-[-0.02em] text-[#1C1D47]">
+                            <div class="pt-0.5">
+                                <h2 class="mb-3 text-[24px] font-light leading-[1.18] tracking-[-0.02em] text-[#1C1D47]">
                                     <a href="{{ get_permalink() }}">
                                         {{ $postTitle }}
                                     </a>
                                 </h2>
 
-                                <p class="mb-[16px] text-[13px] font-light leading-[1.55] text-[#1C1D47]/70">
+                                <p class="mb-4 text-[16px] font-light leading-[1.55] text-[#1C1D47]/70">
                                     {{ $postExcerpt }}
                                 </p>
 
                                 <a href="{{ get_permalink() }}"
-                                    class="text-[10px] font-bold uppercase leading-none tracking-[0.22em] text-[#D8B96F]">
+                                    class="text-[12px] font-bold uppercase leading-none tracking-[0.22em] text-[#D8B96F]">
                                     Czytaj więcej
                                 </a>
                             </div>
@@ -99,8 +103,8 @@
                 @endphp
 
                 @if ($pagination)
-                    <nav class="mt-[67px] flex justify-center">
-                        <div class="flex items-center gap-[26px] text-[13px] font-light leading-none text-[#1C1D47]/65">
+                    <nav class="mt-16.75 flex justify-center">
+                        <div class="flex items-center gap-6.5 text-[13px] font-light leading-none text-[#1C1D47]/65">
                             @foreach ($pagination as $pageLink)
                                 {!! str_replace(
                                     ['page-numbers current', 'page-numbers'],

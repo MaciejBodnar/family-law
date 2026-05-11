@@ -56,23 +56,25 @@
 <footer class="bg-[#1C1D47] text-white">
     @if (!is_page_template('template-contact.blade.php') && !is_page_template('front-page.blade.php'))
         {{-- CTA --}}
-        <section class="relative h-[530px] bg-[#1C1D47] bg-cover bg-center"
-            style="background-image: url('{{ $imageUrl($ctaImage, asset('images/footer/footer-cta.jpg')) }}');">
-            <div class="absolute inset-0 bg-[#1C1D47]/82"></div>
+        <section class="relative h-132.5 bg-[#1C1D47] bg-cover bg-center"
+            style="background-image: url('{{ $imageUrl($ctaImage, asset('resources/images/footer.png')) }}');">
+            <div class="absolute inset-0 bg-[#1C1D47]/10"></div>
 
             <div class="relative z-10 flex h-full items-center justify-center px-6 text-center">
-                <div class="mt-[-18px]">
-                    <div class="mb-[30px] text-[#D8B96F]">
-                        <span class="text-[15px] leading-none tracking-[0.16em]">▸▸▸</span>
+                <div class="-mt-4.5">
+                    <div class="mb-7 flex justify-center">
+                        <img src="{{ asset('resources/images/rec.svg') }}" alt="">
+                        <img src="{{ asset('resources/images/rec.svg') }}" alt="">
+                        <img src="{{ asset('resources/images/rec.svg') }}" alt="">
                     </div>
 
                     <h2
-                        class="mb-[38px] font-serif text-[64px] font-normal uppercase leading-[0.98] tracking-[-0.035em] text-white md:text-[74px]">
+                        class="mb-9.5 font-serif text-[64px] font-normal uppercase leading-[0.98] tracking-[-0.035em] text-white md:text-[74px]">
                         {!! wp_kses_post($ctaTitle) !!}
                     </h2>
 
                     <a href="{{ $ctaButtonUrl }}"
-                        class="inline-flex h-[45px] min-w-[250px] items-center justify-center border border-[#D8B96F] px-[30px] text-[12px] font-bold uppercase tracking-[0.42em] text-white">
+                        class="inline-flex h-11.25 min-w-62.5 items-center justify-center border border-[#D8B96F] px-7.5 text-[12px] font-bold uppercase tracking-[0.42em] text-white">
                         {{ $ctaButtonText }}
                     </a>
                 </div>
@@ -81,28 +83,28 @@
     @endif
 
     {{-- Footer main --}}
-    <section class="bg-[#1C1D47] pb-[66px] pt-[104px]">
+    <section class="bg-[#1C1D47] pb-16.5 pt-26">
         <div
-            class="mx-auto grid max-w-[1274px] grid-cols-1 gap-16 px-6 md:grid-cols-[420px_290px_290px] md:gap-[70px] md:px-0">
+            class="mx-auto grid max-w-318.5 grid-cols-1 gap-16 px-6 md:grid-cols-[420px_290px_290px] md:gap-17.5 md:px-0">
             {{-- Left --}}
             <div>
-                <h3 class="mb-[22px] text-[26px] font-light leading-none tracking-[-0.02em] text-white">
+                <h3 class="mb-5.5 text-[26px] font-light leading-none tracking-[-0.02em] text-white">
                     {{ $footerName }}
                 </h3>
 
-                <div class="mb-[50px] flex gap-[12px]">
+                <div class="mb-12.5 flex gap-3">
                     <a href="{{ $facebookUrl }}" target="_blank" rel="noopener" aria-label="Facebook"
-                        class="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-[#D8B96F] text-[15px] text-white">
+                        class="flex h-10.5 w-10.5 items-center justify-center rounded-full bg-[#D8B96F] text-[15px] text-white">
                         <i class="fa-brands fa-facebook-f"></i>
                     </a>
 
                     <a href="{{ $linkedinUrl }}" target="_blank" rel="noopener" aria-label="LinkedIn"
-                        class="flex h-[42px] w-[42px] items-center justify-center rounded-full bg-[#D8B96F] text-[15px] text-white">
+                        class="flex h-10.5 w-10.5 items-center justify-center rounded-full bg-[#D8B96F] text-[15px] text-white">
                         <i class="fa-brands fa-linkedin-in"></i>
                     </a>
                 </div>
 
-                <a href="{{ $privacyUrl }}" class="mb-[18px] block text-[17px] font-light leading-none text-white/45">
+                <a href="{{ $privacyUrl }}" class="mb-4.5 block text-[17px] font-light leading-none text-white/45">
                     Polityka Prywatności
                 </a>
 
@@ -115,14 +117,14 @@
 
             {{-- Services --}}
             <div>
-                <h3 class="mb-[28px] text-[26px] font-light leading-none tracking-[-0.02em] text-white">
+                <h3 class="mb-7 text-[26px] font-light leading-none tracking-[-0.02em] text-white">
                     Usługi
                 </h3>
 
                 <nav>
                     @foreach ($footerServices as $service)
                         <a href="{{ $service['url'] ?? '#' }}"
-                            class="block border-b border-[#D8B96F]/55 py-[8px] text-[17px] font-light leading-none text-white/45">
+                            class="block border-b border-[#D8B96F]/55 py-2 text-[17px] font-light leading-none text-white/45">
                             {{ $service['title'] ?? '' }}
                         </a>
                     @endforeach
@@ -131,7 +133,7 @@
 
             {{-- Contact --}}
             <div>
-                <h3 class="mb-[28px] text-[26px] font-light leading-none tracking-[-0.02em] text-white">
+                <h3 class="mb-7 text-[26px] font-light leading-none tracking-[-0.02em] text-white">
                     Kontakt
                 </h3>
 
@@ -140,17 +142,17 @@
                         kom: {{ $phonePl }}
                     </p>
 
-                    <p class="border-b border-[#D8B96F]/55 py-[8px]">
+                    <p class="border-b border-[#D8B96F]/55 py-2">
                         kom: {{ $phoneUk }}
                     </p>
 
-                    <p class="border-b border-[#D8B96F]/55 py-[8px]">
+                    <p class="border-b border-[#D8B96F]/55 py-2">
                         <a href="mailto:{!! antispambot($email) !!}">
                             {!! antispambot($email) !!}
                         </a>
                     </p>
 
-                    <p class="py-[8px]">
+                    <p class="py-2">
                         {{ $address }}
                     </p>
                 </div>

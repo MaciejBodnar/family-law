@@ -143,28 +143,31 @@
 
     @endphp
 
-    <section class="grid min-h-screen grid-cols-1 bg-[#FAFAF8] lg:grid-cols-2">
+    <section class="mt-19.5 grid min-h-screen grid-cols-1 bg-[#FAFAF8] lg:grid-cols-2">
         {{-- Top left: Philosophy --}}
-        <div class="min-h-[640px] bg-[#FAFAF8] px-[32px] pb-[90px] pt-[24px] text-[#1C1D47] md:px-[80px] lg:px-0">
-            <div class="mx-auto max-w-[372px] lg:ml-[125px] lg:mr-0">
-                <div class="mb-[63px] text-[14px] font-light leading-none text-[#1C1D47]/25">
-                    <a href="{{ home_url('/') }}" class="transition hover:text-[#1C1D47]/50">
-                        Strona Główna
-                    </a>
-                    <span class="mx-[5px]">-</span>
-                    <span>O nas</span>
-                </div>
+        <div
+            class="h-full bg-[#FAFAF8] px-8 pb-22.5 pt-6 sm:pr-28.75 text-[#1C1D47] md:px-20 lg:px-0 mx-auto max-w-150 lg:ml-31.25 lg:mr-0">
+            <div class="text-base font-light leading-5 text-[#1C1D47]/25">
+                <a href="{{ home_url('/') }}" class="transition hover:text-[#1C1D47]/50">
+                    Strona Główna
+                </a>
+                <span class="mx-1.25">-</span>
+                <span>O nas</span>
+            </div>
+            <div class="h-full flex flex-col justify-center">
 
-                <div class="mb-[20px] text-[#E1BF74]">
-                    <span class="text-[13px] leading-none tracking-[0.18em]">▸▸▸</span>
+                <div class="mb-4 flex">
+                    <img src="{{ asset('resources/images/rec.svg') }}" alt="">
+                    <img src="{{ asset('resources/images/rec.svg') }}" alt="">
+                    <img src="{{ asset('resources/images/rec.svg') }}" alt="">
                 </div>
 
                 <h1
-                    class="mb-[22px] font-serif text-[52px] font-normal leading-[0.98] tracking-[-0.045em] text-[#1C1D47] md:text-[58px]">
+                    class="mb-5.5 font-serif text-[52px] font-normal leading-[0.98] tracking-[-0.045em] text-[#1C1D47] md:text-[58px]">
                     Nasza filozofia
                 </h1>
 
-                <div class="space-y-[22px] text-[14px] font-light leading-[1.58] text-[#1C1D47]/78">
+                <div class="space-y-5.5 text-base font-light leading-[1.58] text-[#1C1D47]/78">
                     @foreach ($philosophyParagraphs as $paragraph)
                         <p>{!! wp_kses_post($paragraph) !!}</p>
                     @endforeach
@@ -172,63 +175,65 @@
             </div>
         </div>
 
-        {{-- Top right image --}}
-        <div class="min-h-[640px] bg-neutral-200">
-            <img src="{{ $imageUrl($philosophyImage, asset('images/about/about-philosophy.jpg')) }}"
-                alt="{{ $imageAlt($philosophyImage, 'Nasza filozofia') }}" class="h-full w-full object-cover grayscale">
+        <div class="bg-neutral-200">
+            <img src="{{ $imageUrl($philosophyImage, asset('resources/images/sitting1.png')) }}"
+                alt="{{ $imageAlt($philosophyImage, 'Nasza filozofia') }}" class="max-h-200 w-full object-cover grayscale">
         </div>
 
         {{-- Bottom left image --}}
-        <div class="min-h-[640px] bg-neutral-200">
-            <img src="{{ $imageUrl($whyImage, asset('images/about/about-why.jpg')) }}"
-                alt="{{ $imageAlt($whyImage, 'Dlaczego my') }}" class="h-full w-full object-cover grayscale">
+        <div class="bg-neutral-200">
+            <img src="{{ $imageUrl($whyImage, asset('resources/images/sitting2.png')) }}"
+                alt="{{ $imageAlt($whyImage, 'Dlaczego my') }}" class="max-h-200 w-full object-cover grayscale">
         </div>
 
         {{-- Bottom right: Why us --}}
-        <div
-            class="min-h-[640px] bg-[#FAFAF8] px-[32px] py-[100px] text-[#1C1D47] md:px-[80px] lg:px-0 lg:pb-[90px] lg:pt-[145px]">
-            <div class="mx-auto max-w-[435px] lg:ml-[95px] lg:mr-0">
-                <div class="mb-[18px] text-[#E1BF74]">
-                    <span class="text-[13px] leading-none tracking-[0.18em]">▸▸▸</span>
+        <div class="min-h-160 bg-[#FAFAF8] px-8 py-25 text-[#1C1D47] md:px-20 lg:px-0 lg:pb-22.5 lg:pt-36.25">
+            <div class="mx-auto max-w-150 lg:ml-23.75 lg:mr-0 h-full flex flex-col justify-center">
+                <div class="mb-4 flex">
+                    <img src="{{ asset('resources/images/rec.svg') }}" alt="">
+                    <img src="{{ asset('resources/images/rec.svg') }}" alt="">
+                    <img src="{{ asset('resources/images/rec.svg') }}" alt="">
                 </div>
 
                 <h2
-                    class="mb-[20px] font-serif text-[52px] font-normal leading-[0.98] tracking-[-0.045em] text-[#1C1D47] md:text-[58px]">
+                    class="mb-5 font-serif text-[52px] font-normal leading-[0.98] tracking-[-0.045em] text-[#1C1D47] md:text-[58px]">
                     Dlaczego my
                 </h2>
 
-                <p class="text-[14px] font-light leading-[1.58] text-[#1C1D47]/78">
+                <p class="text-base font-light leading-[1.58] text-[#1C1D47]/78">
                     {!! wp_kses_post($whyParagraph) !!}
                 </p>
             </div>
         </div>
     </section>
-    <section class="bg-[#FAFAF8] text-[#1C1D47]">
-        <div class="mx-auto max-w-[980px] px-6 pb-[88px] pt-[82px] md:px-0">
+    <section class="bg-[#ffffff] text-[#1C1D47]">
+        <div class="mx-8 md:mx-37.5 px-6 pb-22 pt-20.5 md:px-0">
             {{-- Section heading --}}
-            <div class="grid grid-cols-1 gap-[34px] md:grid-cols-[270px_1fr] md:gap-[68px]">
+            <div class="grid grid-cols-1 gap-8.5 md:grid-cols-[270px_1fr] md:gap-17">
                 <div>
-                    <div class="mb-[20px] text-[#E1BF74]">
-                        <span class="text-[13px] leading-none tracking-[0.18em]">▸▸▸</span>
+                    <div class="mb-4 flex">
+                        <img src="{{ asset('resources/images/rec.svg') }}" alt="">
+                        <img src="{{ asset('resources/images/rec.svg') }}" alt="">
+                        <img src="{{ asset('resources/images/rec.svg') }}" alt="">
                     </div>
 
                     <h2
-                        class="font-serif text-[54px] font-normal leading-[0.96] tracking-[-0.045em] text-[#1C1D47] md:text-[58px]">
+                        class="font-serif text-[54px] font-normal leading-[0.96] tracking-[-0.045em] text-[#1C1D47] md:text-[64px]">
                         Zespół
                     </h2>
                 </div>
 
-                <p class="max-w-[680px] pt-[48px] text-[14px] font-light leading-[1.55] text-[#1C1D47]/78 md:pt-[48px]">
+                <p class="pt-12 text-base font-light leading-[1.55] text-[#1C1D47]/78 md:pt-12">
                     {{ $teamIntro }}
                 </p>
             </div>
 
             {{-- Members --}}
-            <div class="mt-[64px] space-y-[58px]">
+            <div class="mt-16 space-y-14.5">
                 @foreach ($teamMembers as $index => $member)
                     @php
                         $fallbackImage =
-                            $index === 0 ? asset('images/about/team-ewa.jpg') : asset('images/about/team-mikolaj.jpg');
+                            $index === 0 ? asset('resources/images/team1.png') : asset('resources/images/team2.png');
 
                         $bio = $member['bio'] ?? [];
 
@@ -237,23 +242,24 @@
                         }
                     @endphp
 
-                    <article class="grid grid-cols-1 gap-[42px] md:grid-cols-[230px_1fr] md:gap-[106px]">
-                        <div class="h-[230px] w-[230px] overflow-hidden rounded-full bg-neutral-200">
+                    <article
+                        class="grid grid-cols-1 gap-10.5 md:grid-cols-[230px_1fr] md:gap-30 justify-items-center md:justify-items-start">
+                        <div class="h-57.5 w-57.5 overflow-hidden rounded-full bg-neutral-200">
                             <img src="{{ $getImageUrl($member['image'] ?? null, $fallbackImage) }}"
                                 alt="{{ $getImageAlt($member['image'] ?? null, $member['name'] ?? '') }}"
                                 class="h-full w-full object-cover grayscale">
                         </div>
 
-                        <div class="max-w-[655px] pt-[1px]">
-                            <h3 class="mb-[8px] text-[23px] font-light leading-[1.05] tracking-[-0.02em] text-[#1C1D47]">
+                        <div class="pt-px">
+                            <h3 class="mb-2 text-2xl font-light leading-[1.05] tracking-[-0.02em] text-[#1C1D47]">
                                 {{ $member['name'] ?? '' }}
                             </h3>
 
-                            <p class="mb-[27px] text-[13px] font-light leading-[1.25] text-[#1C1D47]/75">
+                            <p class="mb-6.75 text-base font-light leading-tight text-[#1C1D47]/75">
                                 {{ $member['position'] ?? '' }}
                             </p>
 
-                            <div class="space-y-[21px] text-[14px] font-light leading-[1.62] text-[#1C1D47]/62">
+                            <div class="space-y-5.25 text-base font-light leading-[1.62] text-[#1C1D47]/62">
                                 @foreach ($bio as $paragraph)
                                     @if (!empty(trim($paragraph)))
                                         <p>{!! wp_kses_post($paragraph) !!}</p>
@@ -266,29 +272,30 @@
             </div>
         </div>
     </section>
-    <section class="min-h-[768px] bg-[#CBD7C9] text-[#1B2D18]">
-        <div
-            class="mx-auto grid max-w-[1080px] grid-cols-1 gap-[68px] px-6 pb-[70px] pt-[112px] md:grid-cols-[210px_1fr] md:px-0">
+    <section class="min-h-192 bg-[#CBD7C9] text-[#1B2D18]">
+        <div class="mx-8 md:mx-25.5 grid grid-cols-1 gap-17.5 px-6 pb-17.5 pt-28 md:grid-cols-[210px_1fr] md:px-0">
             <div>
-                <div class="mb-[24px] text-[#D8B96F]">
-                    <span class="text-[13px] leading-none tracking-[0.16em]">▸▸▸</span>
+                <div class="mb-4 flex">
+                    <img src="{{ asset('resources/images/rec.svg') }}" alt="">
+                    <img src="{{ asset('resources/images/rec.svg') }}" alt="">
+                    <img src="{{ asset('resources/images/rec.svg') }}" alt="">
                 </div>
 
-                <h1 class="font-serif text-[58px] font-normal leading-[0.96] tracking-[-0.045em] text-[#1B2D18]">
+                <h1 class="font-serif md:text-[64px] font-normal leading-[0.96] tracking-[-0.045em] text-[#1B2D18]">
                     Opinie
                 </h1>
             </div>
 
-            <div class="grid grid-cols-1 gap-x-[64px] gap-y-[54px] md:grid-cols-3">
+            <div class="grid grid-cols-1 gap-x-16 gap-y-13.5 md:grid-cols-3">
                 @foreach ($reviews as $review)
-                    <article class="max-w-[230px]">
-                        <div class="mb-[16px] flex gap-[12px] text-[#D8B96F]">
+                    <article class="max-w-57.5">
+                        <div class="mb-4 flex gap-3 text-[#D8B96F]">
                             @for ($i = 0; $i < 5; $i++)
-                                <i class="fa-solid fa-star text-[14px] leading-none"></i>
+                                <i class="fa-solid fa-star text-base leading-none"></i>
                             @endfor
                         </div>
 
-                        <p class="mb-[24px] text-[15px] font-light leading-[1.52] tracking-[-0.01em] text-[#1B2D18]/68">
+                        <p class="mb-6 text-[15px] font-light leading-[1.52] tracking-[-0.01em] text-[#1B2D18]/68">
                             „{{ $review['text'] ?? '' }}”
                         </p>
 

@@ -112,45 +112,49 @@
         };
     @endphp
 
-    <section class="bg-[#FAFAF8] text-[#1C1D47]">
-        <div class="mx-auto max-w-[1080px] px-6 pb-[56px] pt-[29px] md:px-0">
+    <section class="bg-[#FAFAF8] text-[#1C1D47] mt-19.5">
+        <div class="mx-8 md:mx-38 px-6 pb-14 pt-7.25 md:px-0">
             {{-- Breadcrumbs --}}
-            <div class="mb-[87px] text-[14px] font-light leading-none text-[#1C1D47]/25">
+            <div class="mb-21.75 text-[14px] font-light leading-none text-[#1C1D47]/25">
                 <a href="{{ home_url('/') }}" class="transition hover:text-[#1C1D47]/45">
                     Strona Główna
                 </a>
 
-                <span class="mx-[5px]">-</span>
+                <span class="mx-1.25">-</span>
 
                 <a href="{{ get_permalink(get_page_by_path('uslugi')) ?: '#' }}" class="transition hover:text-[#1C1D47]/45">
                     Usługi
                 </a>
 
-                <span class="mx-[5px]">-</span>
+                <span class="mx-1.25">-</span>
 
                 <span>{{ $serviceTitle }}</span>
             </div>
 
             {{-- Number --}}
-            <div class="mb-[34px] font-serif text-[54px] font-normal leading-none tracking-[0.02em] text-[#E1BF74]">
+            <div class="mb-8.5 font-serif text-[64px] font-normal leading-none tracking-[0.02em] text-[#E1BF74]">
                 {{ $serviceNumber }}
             </div>
 
             {{-- Title --}}
             <h1
-                class="mb-[49px] max-w-[980px] font-serif text-[64px] font-normal leading-[0.98] tracking-[-0.045em] text-[#1C1D47]">
+                class="mb-5 max-w-245 font-serif text-[44px] md:text-[64px] font-normal leading-[0.98] tracking-[-0.045em] text-[#1C1D47]">
                 {{ $serviceTitle }}
             </h1>
+            <p class="mb-12.25 max-w-212 text-base font-light leading-[1.55] text-[#1C1D47]/78">
+                {{ get_field('service_intro') }}
+            </p>
+
 
             {{-- Service columns --}}
-            <div class="grid grid-cols-1 gap-y-[38px] md:grid-cols-4 md:gap-x-[58px]">
+            <div class="grid grid-cols-1 gap-y-9.5 md:grid-cols-4 md:gap-x-8">
                 @foreach ($serviceItems as $item)
-                    <article class="max-w-[220px]">
-                        <h2 class="mb-[14px] text-[24px] font-light leading-[1.18] tracking-[-0.02em] text-[#1C1D47]">
+                    <article>
+                        <h2 class="mb-3.5 text-[24px] font-light leading-[1.18] tracking-[-0.02em] text-[#1C1D47]">
                             {{ $item['title'] ?? '' }}
                         </h2>
 
-                        <p class="text-[15px] font-light leading-[1.55] text-[#1C1D47]/80">
+                        <p class="text-base font-light leading-[1.55] text-[#1C1D47]/80">
                             {{ $item['text'] ?? '' }}
                         </p>
                     </article>
@@ -159,34 +163,36 @@
         </div>
 
         {{-- Main image --}}
-        <div class="h-[300px] w-full bg-neutral-200">
-            <img src="{{ $imageUrl($serviceImage, asset('images/services/international-family-law.jpg')) }}"
+        <div class="h-90 w-full bg-neutral-200">
+            <img src="{{ $imageUrl($serviceImage, asset('resources/images/service.png')) }}"
                 alt="{{ $imageAlt($serviceImage, $serviceTitle) }}" class="h-full w-full object-cover grayscale">
         </div>
     </section>
-    <section class="grid min-h-[860px] grid-cols-1 bg-[#FAFAF8] lg:grid-cols-2">
-        <div class="bg-[#FAFAF8] px-6 py-[92px] text-[#1C1D47] md:px-[80px] lg:px-0">
-            <div class="mx-auto w-full max-w-[622px] lg:ml-[188px] lg:mr-0">
-                <div class="mb-[38px] text-[#D8B96F]">
-                    <span class="text-[15px] leading-none tracking-[0.16em]">▸▸▸</span>
+    <section class="grid min-h-215 grid-cols-1 bg-[#FAFAF8] lg:grid-cols-2">
+        <div class="bg-[#FAFAF8] px-6 py-23 text-[#1C1D47] md:px-20 lg:px-0">
+            <div class="mx-auto w-full max-w-155.5 lg:ml-47 lg:mr-0">
+                <div class="mb-4 flex">
+                    <img src="{{ asset('resources/images/rec.svg') }}" alt="">
+                    <img src="{{ asset('resources/images/rec.svg') }}" alt="">
+                    <img src="{{ asset('resources/images/rec.svg') }}" alt="">
                 </div>
 
-                <h2 class="mb-[44px] font-serif text-[76px] font-normal leading-[0.9] tracking-[-0.055em] text-[#1C1D47]">
+                <h2 class="mb-11 font-serif text-[76px] font-normal leading-[0.9] tracking-[-0.055em] text-[#1C1D47]">
                     FAQ
                 </h2>
 
-                <div class="mb-[30px]">
+                <div class="mb-7.5">
                     @foreach ($faqItems as $index => $item)
-                        <details class="group py-[13px]" @if ($index === 0) open @endif>
+                        <details class="group py-3.25" @if ($index === 0) open @endif>
                             <summary
-                                class="flex cursor-pointer list-none items-center justify-between gap-[32px] text-[19px] font-light leading-[1.45] tracking-[-0.015em] text-[#1C1D47]/42">
-                                <span>{{ $item['question'] ?? '' }}</span>
+                                class="flex cursor-pointer list-none items-center gap-8 text-[19px] font-light leading-[1.45] tracking-[-0.015em] text-[#1C1D47]/42">
+                                <span class="w-114.5">{{ $item['question'] ?? '' }}</span>
 
                                 <i
                                     class="fa-solid fa-caret-down text-[12px] text-[#1C1D47]/38 transition-transform duration-200 group-open:rotate-180"></i>
                             </summary>
 
-                            <div class="pb-[14px] pl-[80px] pr-[72px] pt-[24px]">
+                            <div class="pb-3.5 pl-18 pr-22 pt-6">
                                 <p class="text-[18px] font-light leading-[1.7] tracking-[-0.015em] text-[#1C1D47]/38">
                                     {{ $item['answer'] ?? '' }}
                                 </p>
@@ -196,14 +202,14 @@
                 </div>
 
                 <a href="{{ get_permalink(get_page_by_path('faq')) ?: '#' }}"
-                    class="mt-[8px] inline-flex h-[50px] min-w-[205px] items-center justify-center border border-[#D8B96F] px-[30px] text-[12px] font-bold uppercase tracking-[0.42em] text-[#1C1D47]">
+                    class="mt-2 inline-flex h-12.5 min-w-51.25 items-center justify-center border-3 border-[#D8B96F] px-7.5 text-[12px] font-bold uppercase tracking-[0.42em] text-[#1C1D47]">
                     Czytaj więcej
                 </a>
             </div>
         </div>
 
-        <div class="min-h-[860px] bg-neutral-300">
-            <img src="{{ $faqImageUrl($faqImage, asset('images/services/service-faq.jpg')) }}"
+        <div class="min-h-215 bg-neutral-300">
+            <img src="{{ $faqImageUrl($faqImage, asset('resources/images/two-people.png')) }}"
                 alt="{{ $faqImageAlt($faqImage, 'FAQ') }}" class="h-full w-full object-cover grayscale">
         </div>
     </section>
