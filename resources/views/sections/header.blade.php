@@ -19,7 +19,7 @@
             class="absolute right-0 top-0 h-full w-[53%] bg-[#1C1D47] [clip-path:polygon(8%_0,100%_0,100%_100%,0_100%)]">
         </div>
 
-        <div class="relative z-10 mx-auto flex h-full max-w-407.5 items-center justify-between px-6 md:px-0">
+        <div class="relative z-10 md:mx-37.5 flex h-full max-w-407.5 items-center justify-between px-6 md:px-0">
             {{-- Logo --}}
             <a href="{{ home_url('/') }}" class="text-[30px] font-light leading-none tracking-[0.03em] text-white"
                 aria-label="{{ $siteName }}">
@@ -29,18 +29,13 @@
             <div class="flex items-center gap-10.5">
                 {{-- Polylang flags --}}
                 @if (!empty($languages))
-                    <nav class="flex items-center gap-3.75" aria-label="Language switcher">
+                    <nav class="hidden md:flex items-center gap-3.75" aria-label="Language switcher">
                         @foreach ($languages as $language)
                             <a href="{{ $language['url'] ?? '#' }}"
-                                class="block h-5 w-5 overflow-hidden rounded-full opacity-80 transition-opacity hover:opacity-100 {{ !empty($language['current_lang']) ? 'opacity-100' : '' }}"
+                                class="block h-5 w-5 overflow-hidden rounded-full opacity-80 transition-opacity hover:grayscale-0 {{ !empty($language['current_lang']) ? 'opacity-100' : 'grayscale' }}"
                                 aria-label="{{ $language['name'] ?? '' }}">
-                                @if (!empty($language['flag']))
-                                    {!! $language['flag'] !!}
-                                @else
-                                    <span class="text-[11px] uppercase">
-                                        {{ $language['slug'] ?? '' }}
-                                    </span>
-                                @endif
+                                <img src="https://kapowaz.github.io/circle-flags/flags/{{ $language['slug'] ?? '' }}.svg"
+                                    alt="{{ $language['name'] ?? '' }}" class="h-full w-full" />
                             </a>
                         @endforeach
                     </nav>
@@ -49,11 +44,7 @@
                 {{-- Menu button --}}
                 <button type="button" class="js-menu-open flex items-center gap-4.5 text-white" aria-haspopup="dialog"
                     aria-controls="site-menu-dialog">
-                    <span class="relative block h-4.25 w-5.25">
-                        <span class="absolute left-0 top-0.5 block h-0.5 w-5.25 bg-white"></span>
-                        <span class="absolute left-0 top-2 block h-0.5 w-5.25 bg-white"></span>
-                        <span class="absolute left-0 top-3.5 block h-5.25 w-0 bg-white"></span>
-                    </span>
+                    <img src="{{ asset('resources/images/menu.svg') }}" alt="">
 
                     <span class="text-[15px] font-bold uppercase leading-none tracking-[0.42em]">
                         Menu
@@ -106,13 +97,8 @@
                             <a href="{{ $language['url'] ?? '#' }}"
                                 class="block h-5.5 w-5.5 overflow-hidden rounded-full opacity-80 transition-opacity hover:opacity-100 {{ !empty($language['current_lang']) ? 'opacity-100' : '' }}"
                                 aria-label="{{ $language['name'] ?? '' }}">
-                                @if (!empty($language['flag']))
-                                    {!! $language['flag'] !!}
-                                @else
-                                    <span class="text-[11px] uppercase">
-                                        {{ $language['slug'] ?? '' }}
-                                    </span>
-                                @endif
+                                <img src="https://kapowaz.github.io/circle-flags/flags/{{ $language['slug'] ?? '' }}.svg"
+                                    alt="{{ $language['name'] ?? '' }}" class="h-full w-full" />
                             </a>
                         @endforeach
                     </div>

@@ -161,3 +161,7 @@ add_action('widgets_init', function () {
         'id' => 'sidebar-footer',
     ] + $config);
 });
+
+add_action('init', function () {
+    remove_post_type_support('page', 'editor');
+}, 100);

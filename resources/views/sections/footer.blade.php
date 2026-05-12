@@ -69,7 +69,7 @@
                     </div>
 
                     <h2
-                        class="mb-9.5 font-serif text-[64px] font-normal uppercase leading-[0.98] tracking-[-0.035em] text-white md:text-[74px]">
+                        class="mb-9.5 font-serif text-[64px] font-normal uppercase leading-[0.98] tracking-[-0.035em] text-white">
                         {!! wp_kses_post($ctaTitle) !!}
                     </h2>
 
@@ -85,7 +85,7 @@
     {{-- Footer main --}}
     <section class="bg-[#1C1D47] pb-16.5 pt-26">
         <div
-            class="mx-auto grid max-w-318.5 grid-cols-1 gap-16 px-6 md:grid-cols-[420px_290px_290px] md:gap-17.5 md:px-0">
+            class="mx-auto grid max-w-318.5 grid-cols-1 justify-between gap-16 px-6 md:grid-cols-[420px_1fr] md:gap-17.5 md:px-0">
             {{-- Left --}}
             <div>
                 <h3 class="mb-5.5 text-[26px] font-light leading-none tracking-[-0.02em] text-white">
@@ -104,57 +104,68 @@
                     </a>
                 </div>
 
-                <a href="{{ $privacyUrl }}" class="mb-4.5 block text-[17px] font-light leading-none text-white/45">
+                <a href="{{ $privacyUrl }}" class="mb-4.5 block text-[16px] font-light leading-none text-white/45">
                     Polityka Prywatności
                 </a>
 
-                <p class="text-[17px] font-light leading-none text-white/45">
+                <p class="text-[16px] font-light leading-none text-white/45">
                     © {{ date('Y') }} {{ $footerName }} - D&amp;C with
                     <span class="text-[#D8B96F]">♥</span>
-                    SLT Media
+                    <a href="https://www.sltmedia.com" target="_blank" rel="noopener" aria-label="SLT Media"
+                        class="hover:text-[#D8B96F]">
+                        SLT Media
+                    </a>
                 </p>
             </div>
+            <div class="flex flex-col md:flex-row gap-8 justify-end">
+                {{-- Services --}}
+                <div>
+                    <h3 class="mb-7 text-[26px] font-light leading-none tracking-[-0.02em] text-white">
+                        Usługi
+                    </h3>
 
-            {{-- Services --}}
-            <div>
-                <h3 class="mb-7 text-[26px] font-light leading-none tracking-[-0.02em] text-white">
-                    Usługi
-                </h3>
+                    <nav>
+                        @foreach ($footerServices as $index => $service)
+                            @if ($index === 3)
+                                <a href="{{ $service['url'] ?? '#' }}"
+                                    class="block py-2 text-[17px] font-light leading-none text-white/45 hover:text-[#D8B96F]">
+                                    {{ $service['title'] ?? '' }}
+                                </a>
+                            @else
+                                <a href="{{ $service['url'] ?? '#' }}"
+                                    class="block border-b-2 border-[#E0C690]/55 py-2 text-[17px] font-light leading-none text-white/45 hover:text-[#D8B96F]">
+                                    {{ $service['title'] ?? '' }}
+                                </a>
+                            @endif
+                        @endforeach
+                    </nav>
+                </div>
 
-                <nav>
-                    @foreach ($footerServices as $service)
-                        <a href="{{ $service['url'] ?? '#' }}"
-                            class="block border-b border-[#D8B96F]/55 py-2 text-[17px] font-light leading-none text-white/45">
-                            {{ $service['title'] ?? '' }}
-                        </a>
-                    @endforeach
-                </nav>
-            </div>
+                {{-- Contact --}}
+                <div>
+                    <h3 class="mb-7 text-[26px] font-light leading-none tracking-[-0.02em] text-white">
+                        Kontakt
+                    </h3>
 
-            {{-- Contact --}}
-            <div>
-                <h3 class="mb-7 text-[26px] font-light leading-none tracking-[-0.02em] text-white">
-                    Kontakt
-                </h3>
+                    <div class="text-[17px] font-light leading-none text-white/45">
+                        <p class="border-b-2 border-[#E0C690]/55 py-2">
+                            kom: {{ $phonePl }}
+                        </p>
 
-                <div class="text-[17px] font-light leading-none text-white/45">
-                    <p class="border-b border-[#D8B96F]/55 py-2">
-                        kom: {{ $phonePl }}
-                    </p>
+                        <p class="border-b-2 border-[#E0C690]/55 py-2">
+                            kom: {{ $phoneUk }}
+                        </p>
 
-                    <p class="border-b border-[#D8B96F]/55 py-2">
-                        kom: {{ $phoneUk }}
-                    </p>
+                        <p class="border-b-2 border-[#E0C690]/55 py-2">
+                            <a href="mailto:{!! antispambot($email) !!}">
+                                {!! antispambot($email) !!}
+                            </a>
+                        </p>
 
-                    <p class="border-b border-[#D8B96F]/55 py-2">
-                        <a href="mailto:{!! antispambot($email) !!}">
-                            {!! antispambot($email) !!}
-                        </a>
-                    </p>
-
-                    <p class="py-2">
-                        {{ $address }}
-                    </p>
+                        <p class="py-2">
+                            {{ $address }}
+                        </p>
+                    </div>
                 </div>
             </div>
         </div>
