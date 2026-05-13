@@ -10,6 +10,7 @@
 
         @php
             $privacyBreadcrumbItems = get_field('privacy_breadcrumb_items') ?: [];
+            $privacyPolicyContent = get_field('privacy_policy_content');
         @endphp
 
         <section class="mt-19.5 min-h-screen bg-[#FAFAF8] pb-24 text-[#1C1D47]">
@@ -38,8 +39,8 @@
                 {{-- Content --}}
                 <div class="max-w-215 border-l border-[#D8B96F] pl-10.5 md:pl-18">
                     <div class="privacy-policy-content max-w-180 text-[14px] font-light leading-[1.72] text-[#1C1D47]/72">
-                        @if (trim(get_the_content()))
-                            {!! apply_filters('the_content', get_the_content()) !!}
+                        @if ($privacyPolicyContent)
+                            {!! $privacyPolicyContent !!}
                         @else
                             <p><strong>Welcome to our Privacy Policy</strong></p>
 

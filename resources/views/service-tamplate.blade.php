@@ -10,6 +10,7 @@
 
         $serviceNumber = get_field('service_number') ?: 'I';
         $serviceTitle = get_field('service_title') ?: get_the_title();
+        $serviceIntro = get_field('service_intro');
         $serviceItems = get_field('service_items') ?: [
             [
                 'title' => 'Jurysdykcja i prawo właściwe',
@@ -95,6 +96,7 @@
 
             return $fallback;
         };
+
     @endphp
 
     <section class="mt-19.5 bg-[#FAFAF8] text-[#1C1D47]">
@@ -106,16 +108,16 @@
                 ])
             </div>
 
-            <div class="mb-8.5   text-[64px] font-normal leading-none tracking-[0.02em] text-[#E1BF74]">
+            <h3 class="mb-8.5   text-[64px] font-normal leading-none tracking-[0.02em] text-[#E1BF74]">
                 {{ $serviceNumber }}
-            </div>
+            </h3>
 
             <h1
                 class="mb-5 max-w-245   text-[44px] font-normal leading-[0.98] tracking-[-0.045em] text-[#1C1D47] md:text-[64px]">
                 {{ $serviceTitle }}
             </h1>
             <p class="mb-12.25 max-w-212 text-base font-light leading-[1.55] text-[#1C1D47]/78">
-                {{ get_field('service_intro') }}
+                {{ $serviceIntro }}
             </p>
 
             <div class="grid grid-cols-1 gap-y-9.5 md:grid-cols-4 md:gap-x-8">

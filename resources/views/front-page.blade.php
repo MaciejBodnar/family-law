@@ -35,7 +35,7 @@
         $heroBackgroundImage = get_field('front_hero_background_image');
         $heroArrowText = get_field('front_hero_arrow_text') ?: 'Międzynarodowe';
         $heroEyebrow = get_field('front_hero_eyebrow') ?: '';
-        $heroTitle = get_field('front_hero_title') ?: "Prawo rodzinne\ni strategiczne\nrozwody";
+        $heroTitle = get_field('front_hero_title') ?: 'Prawo rodzinn<br>i strategiczne<br>rozwody';
 
         $services = get_field('front_services') ?: [
             [
@@ -53,7 +53,7 @@
             ['number' => 'III', 'title' => 'Strategiczne rozwody', 'link' => '#', 'read_more_label' => 'Czytaj więcej'],
             [
                 'number' => 'IIII',
-                'title' => 'Przemoc domowa & bezpieczeństwo',
+                'title' => 'Przemoc domowa',
                 'link' => '#',
                 'read_more_label' => 'Czytaj więcej',
             ],
@@ -155,7 +155,7 @@
                 @endif
 
                 <h1 class="text-[40px] font-light uppercase leading-[1.08] md:text-[64px] lg:text-[72px]">
-                    {!! nl2br(e($heroTitle)) !!}
+                    {!! $heroTitle !!}
                 </h1>
             </div>
         </div>
@@ -167,7 +167,7 @@
         <div class="mx-8 md:mx-25.5 grid grid-cols-1 md:grid-cols-4">
             @foreach ($services as $index => $service)
                 <a href="{{ $linkUrl($service['link'] ?? '#') }}"
-                    class="group relative block px-8 py-11 transition duration-300 hover:bg-white/5 lg:px-12">
+                    class="flex flex-col group relative px-8 py-11 transition duration-300 hover:bg-white/5 lg:px-12">
                     <h2 class="mb-5 block text-[32px] font-exterlight tracking-[0.2em] text-[#FEE1A2]">
                         {{ $service['number'] }}
                     </h2>
@@ -175,7 +175,8 @@
                         {{ $service['title'] }}
                     </p>
 
-                    <span class="flex-1 text-[12px] font-semibold uppercase tracking-[0.35em] text-[#FEE1A2]">
+                    <span
+                        class="flex h-full items-end text-[12px] font-semibold uppercase tracking-[0.35em] text-[#FEE1A2]">
                         {{ $service['read_more_label'] ?? 'Czytaj więcej' }}
                     </span>
 
@@ -280,7 +281,7 @@
     </section>
 
     <section class="bg-[#CBD7C9] px-6 py-24 text-[#1B2D18] lg:px-12">
-        <div class="mx-8 md:mx-25.5 grid grid-cols-1 gap-12 lg:grid-cols-[220px_1fr] lg:gap-20">
+        <div class="mx-8 md:mx-25.5 grid grid-cols-1 gap-12 lg:grid-cols-[300px_1fr] lg:gap-20">
             <div>
                 <div class="mb-5 text-[#FEE1A2]">
                     <div class="mb-4 flex">
@@ -323,7 +324,7 @@
     <section id="faq" class="grid bg-white lg:grid-cols-2">
         <div class="px-8 py-24 text-[#1C1D47] lg:px-12 flex items-center">
             <div class="mx-auto max-w-xl">
-                <div class="mb-5 text-[#FEE1A2]">
+                <div class="mb-5">
                     <div class="mb-4 flex">
                         <img src="{{ asset('resources/images/rec.svg') }}" alt="">
                         <img src="{{ asset('resources/images/rec.svg') }}" alt="">

@@ -638,6 +638,14 @@ class ACFFieldProvider
                     'type' => 'text',
                 ],
                 [
+                    'key' => 'field_service_intro',
+                    'label' => 'Service Intro',
+                    'name' => 'service_intro',
+                    'type' => 'textarea',
+                    'rows' => 4,
+                    'new_lines' => 'br',
+                ],
+                [
                     'key' => 'field_service_items',
                     'label' => 'Service Items',
                     'name' => 'service_items',
@@ -1142,6 +1150,40 @@ class ACFFieldProvider
                         'param' => 'page_template',
                         'operator' => '==',
                         'value' => 'template-contact.blade.php',
+                    ],
+                ],
+            ],
+            'menu_order' => 0,
+            'position' => 'normal',
+            'style' => 'seamless',
+            'label_placement' => 'top',
+            'instruction_placement' => 'label',
+            'hide_on_screen' => '',
+            'active' => true,
+            'description' => '',
+            'show_in_rest' => 0,
+        ]);
+
+        \acf_add_local_field_group([
+            'key' => 'group_privacy_page',
+            'title' => 'Privacy Policy Page',
+            'fields' => [
+                [
+                    'key' => 'field_privacy_policy_content',
+                    'label' => 'Privacy Policy Content',
+                    'name' => 'privacy_policy_content',
+                    'type' => 'wysiwyg',
+                    'tabs' => 'all',
+                    'toolbar' => 'full',
+                    'media_upload' => 1,
+                ],
+            ],
+            'location' => [
+                [
+                    [
+                        'param' => 'page_template',
+                        'operator' => '==',
+                        'value' => 'template-privacy-policy.blade.php',
                     ],
                 ],
             ],
