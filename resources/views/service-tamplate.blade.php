@@ -6,9 +6,7 @@
 
 @section('content')
     @php
-        $breadcrumbParentLabel = get_field('service_breadcrumb_parent_label') ?: 'Usługi';
-        $breadcrumbParentLink = get_field('service_breadcrumb_parent_link');
-        $breadcrumbCurrentLabel = get_field('service_breadcrumb_current_label') ?: get_the_title();
+        $serviceBreadcrumbItems = get_field('service_breadcrumb_items') ?: [];
 
         $serviceNumber = get_field('service_number') ?: 'I';
         $serviceTitle = get_field('service_title') ?: get_the_title();
@@ -102,28 +100,18 @@
     <section class="mt-19.5 bg-[#FAFAF8] text-[#1C1D47]">
         <div class="mx-8 px-6 pb-14 pt-7.25 md:mx-38 md:px-0">
             <div class="mb-21.75 text-[14px] font-light leading-none text-[#1C1D47]/25">
-                <a href="{{ home_url('/') }}" class="transition hover:text-[#1C1D47]/45">
-                    Strona Główna
-                </a>
-
-                <span class="mx-1.25">-</span>
-
-                <a href="{{ is_array($breadcrumbParentLink) ? $breadcrumbParentLink['url'] ?? '#' : (is_string($breadcrumbParentLink) ? $breadcrumbParentLink : '#') }}"
-                    class="transition hover:text-[#1C1D47]/45">
-                    {{ $breadcrumbParentLabel }}
-                </a>
-
-                <span class="mx-1.25">-</span>
-
-                <span>{{ $breadcrumbCurrentLabel }}</span>
+                @include('partials.breadcrumbs', [
+                    'items' => $serviceBreadcrumbItems,
+                    'separator' => '-',
+                ])
             </div>
 
-            <div class="mb-8.5 font-serif text-[64px] font-normal leading-none tracking-[0.02em] text-[#E1BF74]">
+            <div class="mb-8.5   text-[64px] font-normal leading-none tracking-[0.02em] text-[#E1BF74]">
                 {{ $serviceNumber }}
             </div>
 
             <h1
-                class="mb-5 max-w-245 font-serif text-[44px] font-normal leading-[0.98] tracking-[-0.045em] text-[#1C1D47] md:text-[64px]">
+                class="mb-5 max-w-245   text-[44px] font-normal leading-[0.98] tracking-[-0.045em] text-[#1C1D47] md:text-[64px]">
                 {{ $serviceTitle }}
             </h1>
             <p class="mb-12.25 max-w-212 text-base font-light leading-[1.55] text-[#1C1D47]/78">
@@ -133,9 +121,9 @@
             <div class="grid grid-cols-1 gap-y-9.5 md:grid-cols-4 md:gap-x-8">
                 @foreach ($serviceItems as $item)
                     <article>
-                        <h2 class="mb-3.5 text-[24px] font-light leading-[1.18] tracking-[-0.02em] text-[#1C1D47]">
+                        <h4 class="mb-3.5 text-[24px] font-light leading-[1.18] tracking-[-0.02em] text-[#1C1D47]">
                             {{ $item['title'] ?? '' }}
-                        </h2>
+                        </h4>
 
                         <p class="text-base font-light leading-[1.55] text-[#1C1D47]/80">
                             {{ $item['text'] ?? '' }}
@@ -160,7 +148,7 @@
                     <img src="{{ asset('resources/images/rec.svg') }}" alt="">
                 </div>
 
-                <h2 class="mb-11 font-serif text-[76px] font-normal leading-[0.9] tracking-[-0.055em] text-[#1C1D47]">
+                <h2 class="mb-11   text-[76px] font-normal leading-[0.9] tracking-[-0.055em] text-[#1C1D47]">
                     {{ $serviceFaqTitle }}
                 </h2>
 

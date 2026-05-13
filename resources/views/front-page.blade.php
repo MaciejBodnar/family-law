@@ -154,8 +154,7 @@
                     </p>
                 @endif
 
-                <h1
-                    class="font-serif text-[40px] font-light uppercase leading-[1.08] tracking-wide md:text-[64px] lg:text-[72px]">
+                <h1 class="text-[40px] font-light uppercase leading-[1.08] md:text-[64px] lg:text-[72px]">
                     {!! nl2br(e($heroTitle)) !!}
                 </h1>
             </div>
@@ -169,12 +168,12 @@
             @foreach ($services as $index => $service)
                 <a href="{{ $linkUrl($service['link'] ?? '#') }}"
                     class="group relative block px-8 py-11 transition duration-300 hover:bg-white/5 lg:px-12">
-                    <span class="mb-5 block font-serif text-[32px] tracking-[0.45em] text-[#FEE1A2]">
+                    <h2 class="mb-5 block text-[32px] font-exterlight tracking-[0.2em] text-[#FEE1A2]">
                         {{ $service['number'] }}
-                    </span>
-                    <h2 class="mb-5 max-w-55 text-[24px] font-light leading-snug text-white">
-                        {{ $service['title'] }}
                     </h2>
+                    <p class="mb-5 max-w-55 text-[24px] font-extralight leading-snug text-white">
+                        {{ $service['title'] }}
+                    </p>
 
                     <span class="flex-1 text-[12px] font-semibold uppercase tracking-[0.35em] text-[#FEE1A2]">
                         {{ $service['read_more_label'] ?? 'Czytaj więcej' }}
@@ -213,7 +212,7 @@
                     @endif
                 </div>
 
-                <h2 class="mb-5 font-serif text-[64px] font-light leading-tight text-[#1C1D47] md:text-[60px]">
+                <h2 class="mb-5 text-[64px] leading-tight text-[#1C1D47] md:text-[60px]">
                     {{ $philosophyTitle }}
                 </h2>
 
@@ -240,7 +239,7 @@
                     </div>
                 </div>
 
-                <h2 class="mb-5 font-serif text-[64px] font-light leading-none md:text-[64px]">
+                <h2 class="mb-5 text-[64px] leading-none md:text-[64px]">
                     {{ $teamTitle }}
                 </h2>
 
@@ -264,9 +263,9 @@
                 </div>
 
                 <div class="max-w-2xl">
-                    <h3 class="mb-2 text-[24px] font-light">
+                    <h4 class="mb-2 text-[24px] font-light">
                         {{ $teamFeaturedName }}
-                    </h3>
+                    </h4>
 
                     <p class="mb-7 text-base font-light text-[#1C1D47]/80">
                         {{ $teamFeaturedPosition }}
@@ -291,7 +290,7 @@
                     </div>
                 </div>
 
-                <h2 class="font-serif text-[64px] font-light leading-none md:text-[64px]">
+                <h2 class="text-[64px] leading-none md:text-[64px]">
                     {{ $reviewsTitle }}
                 </h2>
             </div>
@@ -330,7 +329,7 @@
                         <img src="{{ asset('resources/images/rec.svg') }}" alt="">
                         <img src="{{ asset('resources/images/rec.svg') }}" alt="">
                     </div>
-                    <h2 class="font-serif text-[clamp(2.9rem,5vw,4rem)] font-light leading-none">{{ $faqTitle }}</h2>
+                    <h2 class="text-black text-[clamp(2.9rem,5vw,4rem)] leading-none">{{ $faqTitle }}</h2>
 
                     <div class="mt-12 space-y-1">
                         @foreach ($faqItems as $index => $item)
@@ -343,7 +342,7 @@
 
                                 <div class="pt-5 pl-10 pr-4">
                                     <p class="text-base font-light leading-8 text-[#272851]">
-                                        {{ $item['answer'] }}
+                                        {!! $item['answer'] !!}
                                     </p>
                                 </div>
                             </details>

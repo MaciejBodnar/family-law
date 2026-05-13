@@ -14,17 +14,23 @@
             get_field('global_ui_breadcrumb_separator', 'option') ?:
             get_field('ui_breadcrumb_separator', 'option') ?:
             '-';
+        $aboutBreadcrumbItems = get_field('about_breadcrumb_items') ?: [];
 
         $philosophyTitle = get_field('about_philosophy_title') ?: 'Nasza filozofia';
         $philosophyContent =
             get_field('about_philosophy_content') ?:
-            'Jesteśmy kancelarią typu bespoke. Nie pracujemy w oparciu o schematy, ponieważ sprawy rodzinne — szczególnie te o charakterze międzynarodowym — wymagają indywidualnego podejścia i precyzyjnie dopasowanej strategii.';
+            'Jesteśmy kancelarią typu *bespoke*. Nie pracujemy w oparciu o schematy, ponieważ sprawy rodzinne – szczególnie te o charakterze międzynarodowym – wymagają indywidualnego podejścia i precyzyjnie dopasowanej strategii.
+
+Każda sprawa, którą prowadzimy, jest dla nas odrębnym projektem – uwzględniającym realia życia klienta, jego sytuację majątkową oraz relacje rodzinne. Naszym celem jest wypracowanie rozwiązań, które są nie tylko trafne prawnie, ale przede wszystkim skuteczne i możliwe do zastosowania w praktyce.
+
+Działamy tam, gdzie granice państw spotykają się z różnicami systemów prawnych, oferując wsparcie w sprawach wymagających szczególnej dokładności, doświadczenia i zrozumienia kontekstu międzynarodowego.
+';
         $philosophyImage = get_field('about_philosophy_image');
 
         $whyTitle = get_field('about_why_title') ?: 'Dlaczego my';
         $whyContent =
             get_field('about_why_content') ?:
-            'Pracujemy jako zespół, łącząc doświadczenie, różne perspektywy oraz komplementarne podejścia do prowadzenia spraw. Naszą siłą jest synergia — połączenie międzynarodowego doświadczenia i strategicznego podejścia z precyzją procesową oraz analitycznym spojrzeniem.';
+            'Pracujemy jako zespół, łącząc doświadczenie, różne perspektywy oraz komplementarne podejścia do prowadzenia spraw. Naszą siłą jest synergia – połączenie międzynarodowego doświadczenia i strategicznego podejścia z precyzją procesową oraz analitycznym spojrzeniem. Łączymy także perspektywę kobiet i mężczyzn oraz doświadczenie różnych etapów życia, co pozwala nam lepiej rozumieć dynamikę konfliktów rodzinnych i skuteczniej reprezentować interesy klientów. Działając między Krakowem a Londynem, oferujemy wsparcie w sprawach transgranicznych, zapewniając ciągłość i spójność działań niezależnie od jurysdykcji. W naszej praktyce każda sprawa traktowana jest indywidualnie – z należytą uwagą, dyskrecją i odpowiedzialnością.';
         $whyImage = get_field('about_why_image');
 
         $teamTitle = get_field('about_team_title') ?: 'Zespół';
@@ -36,15 +42,25 @@
                 'image' => null,
                 'name' => 'adw. Ewa Kodymowska-Sioła',
                 'position' => 'Founder | International Family Lawyer | Accredited Divorce Coach',
-                'bio' =>
-                    'Adwokat z ponad 18-letnim doświadczeniem w sprawach rodzinnych o charakterze międzynarodowym, w tym rozwodach transgranicznych, uprowadzeniach rodzicielskich (Konwencja Haska 1980) oraz sprawach dotyczących dzieci.',
+                'bio' => 'Adwokat z ponad 18-letnim doświadczeniem w sprawach rodzinnych o charakterze międzynarodowym, w tym rozwodach transgranicznych, uprowadzeniach rodzicielskich (Konwencja Haska 1980) oraz sprawach dotyczących dzieci.
+
+Pracuje między Krakowem a Londynem, współpracując z klientami i kancelariami w sprawach obejmujących różne jurysdykcje.
+
+Specjalizuje się w sprawach o wysokim stopniu konfliktu, w tym w reprezentacji mężczyzn jako ofiar przemocy domowej. Łączy praktykę prawniczą z certyfikowanym coachingiem, wspierając klientów w podejmowaniu świadomych i strategicznych decyzji. Ujęta na listach adwokatów prowadzonych przez Konsulat Stanów Zjednoczonych w Krakowie oraz Ambasadę Włoch w Warszawie dla obywateli tych państw.',
             ],
             [
                 'image' => null,
                 'name' => 'apl. adw. Mikołaj Więcek',
                 'position' => 'Junior Partner | International Litigation Specialist',
-                'bio' =>
-                    'Mikołaj to procesalista, który do spraw transgranicznych wnosi męski punkt widzenia i strategiczne, analityczne podejście.',
+                'bio' => 'Mikołaj to procesualista, który do spraw transgranicznych wnosi męski punkt widzenia i strategiczne, analityczne podejście. Specjalizuje się w ochronie interesów klientów w sytuacjach najwyższego napięcia, gdzie prawo rodzinne przenika się z psychologią konfliktu.
+
+ *Ochrona mężczyzn w kryzysie:* Buduje skuteczne linie obrony dla mężczyzn doświadczających przemocy domowej (w tym przemocy psychicznej i ekonomicznej). Jego misją jest przywracanie równowagi w procesach, gdzie ojcowie mierzą się z alienacją rodzicielską lub fałszywymi oskarżeniami.
+
+*Precyzja w sprawach Haskich:* Skupia się na technicznej i dowodowej stronie postępowań o powrót dziecka. Specjalizuje się w wykazywaniu "poważnego ryzyka" (Art. 13b), dbając o to, by bezpieczeństwo jego mocodawców było priorytetem w każdej minucie procesu.
+
+*Operacyjność PL-UK:* Doskonale odnajduje się w procedurach łączących Polskę i Wielką Brytanię, zapewniając płynność działań prawnych bez względu na barierę językową czy proceduralną.
+
+*Strategia faktów:* Jego styl pracy to chłodna analiza, zbieranie twardych dowodów i bezkompromisowa walka o prawdę w sprawach rodzinnych o najwyższej stawce.',
             ],
         ];
 
@@ -138,9 +154,10 @@
         <div
             class="mx-auto max-w-150 h-full bg-[#FAFAF8] px-8 pb-22.5 pt-6 text-[#1C1D47] sm:pr-28.75 md:px-20 lg:ml-31.25 lg:mr-0 lg:px-0">
             <div class="text-base font-light leading-5 text-[#1C1D47]/25">
-                <a href="{{ home_url('/') }}" class="transition hover:text-[#1C1D47]/50">{{ $breadcrumbHomeLabel }}</a>
-                <span class="mx-1.25">{{ $breadcrumbSeparator }}</span>
-                <span>{{ get_field('about_breadcrumb_current_label') ?: 'O nas' }}</span>
+                @include('partials.breadcrumbs', [
+                    'items' => $aboutBreadcrumbItems,
+                    'separator' => $breadcrumbSeparator,
+                ])
             </div>
 
             <div class="flex h-full flex-col justify-center">
@@ -151,7 +168,7 @@
                 </div>
 
                 <h1
-                    class="mb-5.5 font-serif text-[52px] font-normal leading-[0.98] tracking-[-0.045em] text-[#1C1D47] md:text-[58px]">
+                    class="mb-5.5   text-[52px] font-light leading-[0.98] tracking-[-0.045em] text-[#1C1D47] md:text-[58px]">
                     {{ $philosophyTitle }}
                 </h1>
 
@@ -179,8 +196,7 @@
                     <img src="{{ asset('resources/images/rec.svg') }}" alt="">
                 </div>
 
-                <h2
-                    class="mb-5 font-serif text-[52px] font-normal leading-[0.98] tracking-[-0.045em] text-[#1C1D47] md:text-[58px]">
+                <h2 class="mb-5   text-[52px] font-light leading-[0.98] tracking-[-0.045em] text-[#1C1D47] md:text-[58px]">
                     {{ $whyTitle }}
                 </h2>
 
@@ -201,8 +217,7 @@
                         <img src="{{ asset('resources/images/rec.svg') }}" alt="">
                     </div>
 
-                    <h2
-                        class="font-serif text-[54px] font-normal leading-[0.96] tracking-[-0.045em] text-[#1C1D47] md:text-[64px]">
+                    <h2 class="  text-[54px] font-light leading-[0.96] tracking-[-0.045em] text-[#1C1D47] md:text-[64px]">
                         {{ $teamTitle }}
                     </h2>
                 </div>
@@ -212,7 +227,7 @@
                 </p>
             </div>
 
-            <div class="mt-16 space-y-14.5">
+            <div class="mt-16 space-y-25">
                 @foreach ($teamMembers as $index => $member)
                     @php
                         $fallbackImage =
@@ -264,7 +279,7 @@
                     <img src="{{ asset('resources/images/rec.svg') }}" alt="">
                 </div>
 
-                <h1 class="font-serif font-normal leading-[0.96] tracking-[-0.045em] text-[#1B2D18] md:text-[64px]">
+                <h1 class="  font-light leading-[0.96] tracking-[-0.045em] text-[#1B2D18] md:text-[64px]">
                     {{ $reviewsTitle }}
                 </h1>
             </div>

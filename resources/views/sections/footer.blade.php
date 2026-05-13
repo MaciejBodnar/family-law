@@ -1,40 +1,75 @@
 @php
-    $ctaImage = get_field('footer_cta_image', 'option');
-    $ctaTitle = get_field('footer_cta_title', 'option') ?: 'Jak możemy<br>ci pomóc?';
-    $ctaButtonText = get_field('footer_cta_button_text', 'option') ?: 'Skontaktuj się z nami';
-    $ctaButtonUrl = get_field('footer_cta_button_url', 'option') ?: (get_permalink(get_page_by_path('kontakt')) ?: '#');
+    $ctaImage = ewa_kodymowska_siola_get_language_option('footer_cta_image');
+    $ctaTitle = ewa_kodymowska_siola_get_language_option('footer_cta_title', 'Jak możemy<br>ci pomóc?');
+    $ctaButtonText = ewa_kodymowska_siola_get_language_option('footer_cta_button_label', 'Skontaktuj się z nami');
+    $ctaButtonLink = ewa_kodymowska_siola_get_language_option('footer_cta_button_link');
 
-    $footerName = get_field('footer_name', 'option') ?: 'Ewa Kodymowska-Sioła';
+    $footerName = ewa_kodymowska_siola_get_language_option('footer_name', 'Ewa Kodymowska-Sioła');
 
-    $facebookUrl = get_field('footer_facebook_url', 'option') ?: '#';
-    $linkedinUrl = get_field('footer_linkedin_url', 'option') ?: '#';
+    $footerSocials = ewa_kodymowska_siola_get_language_option('footer_socials', [
+        [
+            'icon' => 'fa-brands fa-facebook-f',
+            'url' => '#',
+        ],
+        [
+            'icon' => 'fa-brands fa-linkedin-in',
+            'url' => '#',
+        ],
+    ]);
 
-    $privacyUrl =
-        get_field('footer_privacy_url', 'option') ?: (get_permalink(get_page_by_path('polityka-prywatnosci')) ?: '#');
+    $privacyLabel = ewa_kodymowska_siola_get_language_option('footer_privacy_label', 'Polityka Prywatności');
+    $privacyLink = ewa_kodymowska_siola_get_language_option('footer_privacy_link');
 
-    $footerServices = get_field('footer_services', 'option') ?: [
+    $footerCopyrightText = ewa_kodymowska_siola_get_language_option(
+        'footer_copyright_text',
+        '© ' . date('Y') . ' ' . $footerName . ' - D&C with',
+    );
+    $footerCopyrightHeartSymbol = ewa_kodymowska_siola_get_language_option('footer_copyright_heart_symbol', '♥');
+    $footerCopyrightAgencyText = ewa_kodymowska_siola_get_language_option('footer_copyright_agency_text', 'SLT Media');
+
+    $footerServicesHeading = ewa_kodymowska_siola_get_language_option('footer_services_heading', 'Usługi');
+    $footerServices = ewa_kodymowska_siola_get_language_option('footer_services', [
         [
             'title' => 'Międzynarodowe prawo rodzinne',
-            'url' => '#',
+            'link' => '#',
         ],
         [
             'title' => 'Konwencja haska & relokacje',
-            'url' => '#',
+            'link' => '#',
         ],
         [
             'title' => 'Strategiczne rozwody',
-            'url' => '#',
+            'link' => '#',
         ],
         [
             'title' => 'Przemoc domowa & bezpieczeństwo',
-            'url' => '#',
+            'link' => '#',
         ],
-    ];
+    ]);
 
-    $phonePl = get_field('footer_phone_pl', 'option') ?: '504 073 785';
-    $phoneUk = get_field('footer_phone_uk', 'option') ?: '+44 7899 819 843';
-    $email = get_field('footer_email', 'option') ?: 'ewa.kodymowska@adwokatura.pl';
-    $address = get_field('footer_address', 'option') ?: 'ul Kielecka 6/4, 31-526 Kraków';
+    $footerContactHeading = ewa_kodymowska_siola_get_language_option('footer_contact_heading', 'Kontakt');
+    $footerContactRows = ewa_kodymowska_siola_get_language_option('footer_contact_rows', [
+        [
+            'label' => 'kom',
+            'value' => '504 073 785',
+            'type' => 'phone',
+        ],
+        [
+            'label' => 'kom',
+            'value' => '+44 7899 819 843',
+            'type' => 'phone',
+        ],
+        [
+            'label' => '',
+            'value' => 'ewa.kodymowska@adwokatura.pl',
+            'type' => 'email',
+        ],
+        [
+            'label' => '',
+            'value' => 'ul Kielecka 6/4, 31-526 Kraków',
+            'type' => 'address',
+        ],
+    ]);
 
     $imageUrl = function ($image, $fallback) {
         if (is_array($image) && !empty($image['url'])) {
@@ -51,10 +86,54 @@
 
         return $fallback;
     };
+
+    $normalizeLink = function ($link, $fallback = '#') {
+        if (is_array($link)) {
+            return $link['url'] ?? $fallback;
+        }
+
+        if (is_string($link) && $link) {
+            return $link;
+        }
+
+        return $fallback;
+    };
+
+    $ctaButtonUrl = $normalizeLink($ctaButtonLink, get_permalink(get_page_by_path('kontakt')) ?: '#');
+    $privacyUrl = $normalizeLink($privacyLink, get_permalink(get_page_by_path('polityka-prywatnosci')) ?: '#');
+
+    $renderIcon = function ($icon) {
+        if (!is_string($icon) || $icon === '') {
+            return '';
+        }
+
+        if (str_contains($icon, '<i')) {
+            return $icon;
+        }
+
+        return '<i class="' . esc_attr($icon) . '"></i>';
+    };
+
+    $renderContactValue = function ($row) {
+        $type = $row['type'] ?? 'text';
+        $value = $row['value'] ?? '';
+
+        if ($type === 'phone' && $value !== '') {
+            $phoneHref = preg_replace('/\s+/', '', $value);
+
+            return '<a href="tel:' . esc_attr($phoneHref) . '">' . esc_html($value) . '</a>';
+        }
+
+        if ($type === 'email' && $value !== '') {
+            return '<a href="mailto:' . esc_attr($value) . '">' . esc_html($value) . '</a>';
+        }
+
+        return esc_html($value);
+    };
 @endphp
 
 <footer class="bg-[#1C1D47] text-white">
-    @if (!is_page_template('template-contact.blade.php') && !is_page_template('front-page.blade.php'))
+    @if (!is_page_template('template-contact.blade.php') && !is_front_page())
         {{-- CTA --}}
         <section class="relative h-132.5 bg-[#1C1D47] bg-cover bg-center"
             style="background-image: url('{{ $imageUrl($ctaImage, asset('resources/images/footer.png')) }}');">
@@ -69,7 +148,7 @@
                     </div>
 
                     <h2
-                        class="mb-9.5 font-serif text-[64px] font-normal uppercase leading-[0.98] tracking-[-0.035em] text-white">
+                        class="mb-9.5   text-[64px] font-normal uppercase leading-[0.98] tracking-[-0.035em] text-white">
                         {!! wp_kses_post($ctaTitle) !!}
                     </h2>
 
@@ -88,32 +167,30 @@
             class="mx-auto grid max-w-318.5 grid-cols-1 justify-between gap-16 px-6 md:grid-cols-[420px_1fr] md:gap-17.5 md:px-0">
             {{-- Left --}}
             <div>
-                <h3 class="mb-5.5 text-[26px] font-light leading-none tracking-[-0.02em] text-white">
+                <h4 class="mb-5.5 text-[26px] font-light leading-none tracking-[-0.02em] text-white">
                     {{ $footerName }}
-                </h3>
+                </h4>
 
                 <div class="mb-12.5 flex gap-3">
-                    <a href="{{ $facebookUrl }}" target="_blank" rel="noopener" aria-label="Facebook"
-                        class="flex h-10.5 w-10.5 items-center justify-center rounded-full bg-[#D8B96F] text-[15px] text-white">
-                        <i class="fa-brands fa-facebook-f"></i>
-                    </a>
-
-                    <a href="{{ $linkedinUrl }}" target="_blank" rel="noopener" aria-label="LinkedIn"
-                        class="flex h-10.5 w-10.5 items-center justify-center rounded-full bg-[#D8B96F] text-[15px] text-white">
-                        <i class="fa-brands fa-linkedin-in"></i>
-                    </a>
+                    @foreach ($footerSocials as $social)
+                        <a href="{{ $normalizeLink($social['url'] ?? '#') }}" target="_blank" rel="noopener"
+                            aria-label="{{ $social['label'] ?? '' }}"
+                            class="flex h-10.5 w-10.5 items-center justify-center rounded-full bg-[#D8B96F] text-[15px] text-white">
+                            {!! $renderIcon($social['icon'] ?? '') !!}
+                        </a>
+                    @endforeach
                 </div>
 
                 <a href="{{ $privacyUrl }}" class="mb-4.5 block text-[16px] font-light leading-none text-white/45">
-                    Polityka Prywatności
+                    {{ $privacyLabel }}
                 </a>
 
                 <p class="text-[16px] font-light leading-none text-white/45">
-                    © {{ date('Y') }} {{ $footerName }} - D&amp;C with
-                    <span class="text-[#D8B96F]">♥</span>
-                    <a href="https://www.sltmedia.com" target="_blank" rel="noopener" aria-label="SLT Media"
-                        class="hover:text-[#D8B96F]">
-                        SLT Media
+                    {!! wp_kses_post($footerCopyrightText) !!}
+                    <span class="text-[#D8B96F]">{{ $footerCopyrightHeartSymbol }}</span>
+                    <a href="https://www.sltmedia.com" target="_blank" rel="noopener"
+                        aria-label="{{ $footerCopyrightAgencyText }}" class="hover:text-[#D8B96F]">
+                        {{ $footerCopyrightAgencyText }}
                     </a>
                 </p>
             </div>
@@ -121,18 +198,18 @@
                 {{-- Services --}}
                 <div>
                     <h3 class="mb-7 text-[26px] font-light leading-none tracking-[-0.02em] text-white">
-                        Usługi
+                        {{ $footerServicesHeading }}
                     </h3>
 
                     <nav>
                         @foreach ($footerServices as $index => $service)
                             @if ($index === 3)
-                                <a href="{{ $service['url'] ?? '#' }}"
+                                <a href="{{ $normalizeLink($service['link'] ?? '#') }}"
                                     class="block py-2 text-[17px] font-light leading-none text-white/45 hover:text-[#D8B96F]">
                                     {{ $service['title'] ?? '' }}
                                 </a>
                             @else
-                                <a href="{{ $service['url'] ?? '#' }}"
+                                <a href="{{ $normalizeLink($service['link'] ?? '#') }}"
                                     class="block border-b-2 border-[#E0C690]/55 py-2 text-[17px] font-light leading-none text-white/45 hover:text-[#D8B96F]">
                                     {{ $service['title'] ?? '' }}
                                 </a>
@@ -144,27 +221,19 @@
                 {{-- Contact --}}
                 <div>
                     <h3 class="mb-7 text-[26px] font-light leading-none tracking-[-0.02em] text-white">
-                        Kontakt
+                        {{ $footerContactHeading }}
                     </h3>
 
                     <div class="text-[17px] font-light leading-none text-white/45">
-                        <p class="border-b-2 border-[#E0C690]/55 py-2">
-                            kom: {{ $phonePl }}
-                        </p>
+                        @foreach ($footerContactRows as $row)
+                            <p class="{{ !$loop->last ? 'border-b-2 border-[#E0C690]/55' : '' }} py-2">
+                                @if (!empty($row['label']))
+                                    {!! $row['label'] !!}:
+                                @endif
 
-                        <p class="border-b-2 border-[#E0C690]/55 py-2">
-                            kom: {{ $phoneUk }}
-                        </p>
-
-                        <p class="border-b-2 border-[#E0C690]/55 py-2">
-                            <a href="mailto:{!! antispambot($email) !!}">
-                                {!! antispambot($email) !!}
-                            </a>
-                        </p>
-
-                        <p class="py-2">
-                            {{ $address }}
-                        </p>
+                                {!! $renderContactValue($row) !!}
+                            </p>
+                        @endforeach
                     </div>
                 </div>
             </div>

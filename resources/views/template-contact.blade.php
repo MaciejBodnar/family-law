@@ -6,37 +6,85 @@
 
 @section('content')
     @php
-        $contactFormShortcode = get_field('contact_form_shortcode');
+        $contactArrowText = get_field('contact_arrow_text') ?: '-';
+        $contactBreadcrumbItems = get_field('contact_breadcrumb_items') ?: [];
+        $contactTitle = get_field('contact_title') ?: 'Kontakt';
+        $contactDetailsHeading = get_field('contact_details_heading') ?: 'Kontakt';
+        $contactDetailsRows = get_field('contact_details_rows') ?: [
+            [
+                'label' => 'kom',
+                'value' => '504 073 785',
+                'type' => 'phone',
+            ],
+            [
+                'label' => 'kom',
+                'value' => '+44 7899 819 843',
+                'type' => 'phone',
+            ],
+            [
+                'label' => '',
+                'value' => 'ewa.kodymowska@adwokatura.pl',
+                'type' => 'email',
+            ],
+            [
+                'label' => '',
+                'value' => 'ul Kielecka 6/4, 31-526 Kraków',
+                'type' => 'address',
+            ],
+        ];
+        $contactSocials = get_field('contact_socials') ?: [
+            [
+                'icon' => 'fa-brands fa-facebook-f',
+                'label' => 'Facebook',
+                'url' => '#',
+            ],
+            [
+                'icon' => 'fa-brands fa-linkedin-in',
+                'label' => 'LinkedIn',
+                'url' => '#',
+            ],
+        ];
+        $contactFormHeading = get_field('contact_form_heading') ?: 'Zostaw wiadomość';
+        $contactFormShortcodePL = get_field('contact_form_shortcode_pl');
+        $contactFormShortcodeEN = get_field('contact_form_shortcode_en');
+        $contactFormShortcodeFr = get_field('contact_form_shortcode_fr');
 
-        $phonePl = get_field('contact_phone_pl') ?: '504 073 785';
-        $phoneUk = get_field('contact_phone_uk') ?: '+44 7899 819 843';
-        $email = get_field('contact_email') ?: 'ewa.kodymowska@adwokatura.pl';
-        $address = get_field('contact_address') ?: 'ul Kielecka 6/4, 31-526 Kraków';
+        $renderIcon = function ($icon) {
+            if (!is_string($icon) || $icon === '') {
+                return '';
+            }
 
-        $facebookUrl = get_field('contact_facebook_url') ?: '#';
-        $linkedinUrl = get_field('contact_linkedin_url') ?: '#';
+            if (str_contains($icon, '<i')) {
+                return $icon;
+            }
 
-        $mapEmbed = get_field('contact_map_embed');
-        $mapImage = get_field('contact_map_image');
+            return '<i class="' . esc_attr($icon) . '"></i>';
+        };
 
-        $mapImageUrl = is_array($mapImage)
-            ? $mapImage['url'] ?? null
-            : (is_numeric($mapImage)
-                ? wp_get_attachment_image_url($mapImage, 'full')
-                : $mapImage);
+        $renderDetailValue = function ($item) {
+            $type = $item['type'] ?? 'text';
+            $value = $item['value'] ?? '';
+
+            if ($type === 'phone' && $value !== '') {
+                return '<a href="tel:' . esc_attr(preg_replace('/\s+/', '', $value)) . '">' . esc_html($value) . '</a>';
+            }
+
+            if ($type === 'email' && $value !== '') {
+                return '<a href="mailto:' . esc_attr($value) . '">' . esc_html($value) . '</a>';
+            }
+
+            return esc_html($value);
+        };
     @endphp
 
     <section class="mt-19.5 bg-[#FAFAF8] text-[#1C1D47]">
         <div class="mx-auto max-w-273.5 px-6 pb-22.5 pt-7 md:px-0">
             {{-- Breadcrumbs --}}
             <div class="mb-18.5 text-[14px] font-light leading-none text-[#1C1D47]/25">
-                <a href="{{ home_url('/') }}">
-                    Strona Główna
-                </a>
-
-                <span class="mx-1.25">-</span>
-
-                <span>Kontakt</span>
+                @include('partials.breadcrumbs', [
+                    'items' => $contactBreadcrumbItems,
+                    'separator' => $contactArrowText,
+                ])
             </div>
 
             <div class="mb-11.25">
@@ -46,59 +94,58 @@
                     <img src="{{ asset('resources/images/rec.svg') }}" alt="">
                 </div>
 
-                <h1
-                    class="font-serif text-[58px] md:text-[64px] font-normal leading-[0.96] tracking-[-0.045em] text-[#1C1D47]">
-                    Kontakt
+                <h1 class="  text-[58px] md:text-[64px] font-normal leading-[0.96] tracking-[-0.045em] text-[#1C1D47]">
+                    {{ $contactTitle }}
                 </h1>
             </div>
 
             <div class="grid grid-cols-1 gap-16.5 lg:grid-cols-[205px_1fr]">
                 {{-- Contact details --}}
                 <aside>
-                    <h2 class="mb-6 text-[24px] font-light leading-none tracking-[-0.02em] text-[#1C1D47]">
-                        Kontakt
-                    </h2>
+                    <h4 class="mb-6 text-[24px] font-light leading-none tracking-[-0.02em] text-[#1C1D47]">
+                        {{ $contactDetailsHeading }}
+                    </h4>
 
                     <div class="space-y-2.25 text-[16px] font-light leading-tight text-[#1C1D47]/75">
-                        <p>kom: {{ $phonePl }}</p>
-                        <p>kom: {{ $phoneUk }}</p>
+                        @foreach ($contactDetailsRows as $item)
+                            <p>
+                                @if (!empty($item['label']))
+                                    {{ $item['label'] }}:
+                                @endif
 
-                        <p>
-                            <a href="mailto:{{ $email }}">
-                                {{ $email }}
-                            </a>
-                        </p>
-
-                        <p>{{ $address }}</p>
+                                {!! $renderDetailValue($item) !!}
+                            </p>
+                        @endforeach
                     </div>
 
                     <div class="mt-6.25 flex gap-2.75">
-                        <a href="{{ $facebookUrl }}" aria-label="Facebook"
-                            class="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#D8B96F] text-[14px] text-white"
-                            target="_blank" rel="noopener">
-                            <i class="fa-brands fa-facebook-f"></i>
-                        </a>
-
-                        <a href="{{ $linkedinUrl }}" aria-label="LinkedIn"
-                            class="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#D8B96F] text-[14px] text-white"
-                            target="_blank" rel="noopener">
-                            <i class="fa-brands fa-linkedin-in"></i>
-                        </a>
+                        @foreach ($contactSocials as $social)
+                            <a href="{{ $social['url'] ?? '#' }}" aria-label="{{ $social['label'] ?? '' }}"
+                                class="flex h-8.5 w-8.5 items-center justify-center rounded-full bg-[#D8B96F] text-[14px] text-white"
+                                target="_blank" rel="noopener">
+                                {!! $renderIcon($social['icon'] ?? '') !!}
+                            </a>
+                        @endforeach
                     </div>
                 </aside>
 
                 {{-- CF7 form --}}
                 <div>
-                    <h2 class="mb-6.25 text-[24px] font-light leading-none tracking-[-0.02em] text-[#1C1D47]">
-                        Zostaw wiadomość
-                    </h2>
+                    <h4 class="mb-6.25 text-[24px] font-light leading-none tracking-[-0.02em] text-[#1C1D47]">
+                        {{ $contactFormHeading }}
+                    </h4>
 
                     <div class="contact-cf7">
-                        @if ($contactFormShortcode)
-                            {!! do_shortcode($contactFormShortcode) !!}
-                        @else
-                            {{-- Add shortcode in ACF: contact_form_shortcode --}}
-                            {!! do_shortcode('[contact-form-7 id="98d3aa4" title="Contact"]') !!}
+                        @if (function_exists('pll_current_language'))
+                            @if (pll_current_language() === 'pl')
+                                {!! do_shortcode($contactFormShortcodePL) !!}
+                            @elseif (pll_current_language() === 'gb')
+                                {!! do_shortcode($contactFormShortcodeEN) !!}
+                            @elseif (pll_current_language() === 'fr')
+                                {!! do_shortcode($contactFormShortcodeFr) !!}
+                            @else
+                                {!! do_shortcode('[contact-form-7 id="98d3aa4" title="Contact"]') !!}
+                            @endif
                         @endif
                     </div>
                 </div>

@@ -6,14 +6,19 @@
 @source "../**/*.js";
 
 @layer base {
+  :root {
+    --font-sans-main: "articulat-cf-thin", ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    --font-serif-main: "the-seasons-light", ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+  }
+
 	html {
 		scroll-behavior: smooth;
 	}
 
-	body {
-		background: #f5f3ef;
+	body,
+  h4 {
 		color: #1c1d47;
-		font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    font-family: var(--font-sans-main);
 		text-rendering: optimizeLegibility;
 	}
 
@@ -21,7 +26,7 @@
 	h2,
 	h3,
 	.font-serif {
-		font-family: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
+    font-family: var(--font-serif-main);
 	}
 
 	::selection {
@@ -38,11 +43,15 @@ a {
   max-width: 710px;
 }
 
+form span {
+  margin: 0 !important;
+}
+
 .contact-cf7 .cf7-contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   column-gap: 28px;
-  row-gap: 28px;
+  row-gap: 10px;
 }
 
 .contact-cf7 label {
@@ -62,26 +71,31 @@ a {
 .contact-cf7 .cf7-textarea {
   width: 100%;
   border: 0;
-  border-bottom: 1px solid rgb(28 29 71 / 0.12);
+  border-bottom: 1.5px solid rgb(28 29 71 / 0.12);
+  border-left: 1.5px solid rgb(28 29 71 / 0.12);
   background: transparent;
   color: #1c1d47;
   font-size: 15px;
   font-weight: 300;
   outline: none;
   border-radius: 0;
+  padding: 0 12px;
+}
+
+.cf7-line:active,
+.cf7-line:focus,
+.cf7-textarea:active,
+.cf7-textarea:focus {
+  border-color: #E0C690;
 }
 
 .contact-cf7 .cf7-line {
-  height: 35px;
+  height: 40px;
 }
 
 .contact-cf7 .cf7-textarea {
   height: 156px;
   resize: none;
-}
-
-.contact-cf7 .cf7-message {
-  margin-top: 27px;
 }
 
 .contact-cf7 .cf7-acceptance {
@@ -201,7 +215,7 @@ body.has-open-menu {
 .site-menu-list a {
   color: #ffffff;
   font-family: serif;
-  font-size: 72px;
+  font-size: 36px;
   font-weight: 400;
   line-height: 0.95;
   letter-spacing: -0.045em;

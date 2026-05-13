@@ -8,17 +8,18 @@
     @while (have_posts())
         @php(the_post())
 
+        @php
+            $privacyBreadcrumbItems = get_field('privacy_breadcrumb_items') ?: [];
+        @endphp
+
         <section class="mt-19.5 min-h-screen bg-[#FAFAF8] pb-24 text-[#1C1D47]">
             <div class="mx-auto max-w-273.5 px-6 pt-7 md:px-0">
                 {{-- Breadcrumbs --}}
                 <div class="mb-18.5 text-[14px] font-light leading-none text-[#1C1D47]/25">
-                    <a href="{{ home_url('/') }}">
-                        Strona Główna
-                    </a>
-
-                    <span class="mx-1.25">-</span>
-
-                    <span>{{ get_the_title() }}</span>
+                    @include('partials.breadcrumbs', [
+                        'items' => $privacyBreadcrumbItems,
+                        'separator' => '-',
+                    ])
                 </div>
 
                 {{-- Heading --}}
@@ -29,8 +30,7 @@
                         <img src="{{ asset('resources/images/rec.svg') }}" alt="">
                     </div>
 
-                    <h1
-                        class="font-serif text-[58px] font-normal leading-[0.96] tracking-[-0.045em] text-[#1C1D47] md:text-[68px]">
+                    <h1 class="  text-[58px] font-normal leading-[0.96] tracking-[-0.045em] text-[#1C1D47] md:text-[68px]">
                         {{ get_the_title() ?: 'Privacy Policy' }}
                     </h1>
                 </div>
