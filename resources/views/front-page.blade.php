@@ -299,7 +299,7 @@
             <div class="grid grid-cols-1 gap-10 md:grid-cols-3">
                 @foreach ($reviews as $review)
                     <article>
-                        <div class="mb-5 flex gap-2 text-[#FEE1A2]">
+                        <div class="mb-5 flex gap-2 text-[#C8AC6F]">
                             @php
                                 $rating = max(1, min(5, (int) ($review['rating'] ?? 5)));
                             @endphp

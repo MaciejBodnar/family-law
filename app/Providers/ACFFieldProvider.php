@@ -885,7 +885,11 @@ class ACFFieldProvider
                     'key' => 'field_single_post_title',
                     'label' => 'Title',
                     'name' => 'single_post_title',
-                    'type' => 'text',
+                    'type' => 'wysiwyg',
+                    'tabs' => 'all',
+                    'toolbar' => 'basic',
+                    'media_upload' => 0,
+                    'new_lines' => 'br',
                 ],
                 [
                     'key' => 'field_single_post_content',

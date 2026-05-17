@@ -152,7 +152,7 @@ Specjalizuje się w sprawach o wysokim stopniu konfliktu, w tym w reprezentacji 
 
     <section class="mt-19.5 grid min-h-screen grid-cols-1 bg-[#FAFAF8] lg:grid-cols-2">
         <div
-            class="mx-auto max-w-150 h-full bg-[#FAFAF8] px-8 pb-22.5 pt-6 text-[#1C1D47] sm:pr-28.75 md:px-20 lg:ml-31.25 lg:mr-0 lg:px-0">
+            class="mx-auto h-full bg-[#FAFAF8] px-8 pb-22.5 pt-6 text-[#1C1D47] sm:pr-28.75 md:px-20 lg:ml-31.25 lg:mr-0 lg:px-0">
             <div class="text-base font-light leading-5 text-[#1C1D47]/25">
                 @include('partials.breadcrumbs', [
                     'items' => $aboutBreadcrumbItems,
@@ -160,7 +160,7 @@ Specjalizuje się w sprawach o wysokim stopniu konfliktu, w tym w reprezentacji 
                 ])
             </div>
 
-            <div class="flex h-full flex-col justify-center">
+            <div class="flex w-full h-full flex-col justify-center">
                 <div class="mb-4 flex">
                     <img src="{{ asset('resources/images/rec.svg') }}" alt="">
                     <img src="{{ asset('resources/images/rec.svg') }}" alt="">
@@ -172,7 +172,7 @@ Specjalizuje się w sprawach o wysokim stopniu konfliktu, w tym w reprezentacji 
                     {{ $philosophyTitle }}
                 </h1>
 
-                <div class="space-y-5.5 text-base font-light leading-[1.58] text-[#1C1D47]/78">
+                <div class="space-y-5.5 text-base font-light leading-[1.58] text-[#1C1D47]/78 pr-25">
                     {!! wp_kses_post($philosophyContent) !!}
                 </div>
             </div>
@@ -180,16 +180,16 @@ Specjalizuje się w sprawach o wysokim stopniu konfliktu, w tym w reprezentacji 
 
         <div class="bg-neutral-200">
             <img src="{{ $imageUrl($philosophyImage, asset('resources/images/sitting1.png')) }}"
-                alt="{{ $imageAlt($philosophyImage, $philosophyTitle) }}" class="max-h-200 w-full object-cover grayscale">
+                alt="{{ $imageAlt($philosophyImage, $philosophyTitle) }}" class="h-full w-full object-cover grayscale">
         </div>
 
         <div class="bg-neutral-200">
             <img src="{{ $imageUrl($whyImage, asset('resources/images/sitting2.png')) }}"
-                alt="{{ $imageAlt($whyImage, $whyTitle) }}" class="max-h-200 w-full object-cover grayscale">
+                alt="{{ $imageAlt($whyImage, $whyTitle) }}" class="h-full w-full object-cover grayscale">
         </div>
 
         <div class="min-h-160 bg-[#FAFAF8] px-8 py-25 text-[#1C1D47] md:px-20 lg:pb-22.5 lg:pt-36.25 lg:px-0">
-            <div class="mx-auto flex h-full max-w-150 flex-col justify-center lg:ml-23.75 lg:mr-0">
+            <div class="mx-auto flex h-full flex-col justify-center lg:ml-23.75 md:mr-37.5">
                 <div class="mb-4 flex">
                     <img src="{{ asset('resources/images/rec.svg') }}" alt="">
                     <img src="{{ asset('resources/images/rec.svg') }}" alt="">
@@ -271,7 +271,7 @@ Specjalizuje się w sprawach o wysokim stopniu konfliktu, w tym w reprezentacji 
     </section>
 
     <section class="min-h-192 bg-[#CBD7C9] text-[#1B2D18]">
-        <div class="mx-8 grid grid-cols-1 gap-17.5 px-6 pb-17.5 pt-28 md:mx-25.5 md:grid-cols-[210px_1fr] md:px-0">
+        <div class="mx-8 grid grid-cols-1 gap-20 px-6 pb-17.5 pt-28 md:mx-25.5 md:grid-cols-[300px_1fr] md:px-0">
             <div>
                 <div class="mb-4 flex">
                     <img src="{{ asset('resources/images/rec.svg') }}" alt="">
@@ -284,14 +284,14 @@ Specjalizuje się w sprawach o wysokim stopniu konfliktu, w tym w reprezentacji 
                 </h1>
             </div>
 
-            <div class="grid grid-cols-1 gap-x-16 gap-y-13.5 md:grid-cols-3">
+            <div class="grid grid-cols-1 gap-x-10 gap-y-13.5 md:grid-cols-3">
                 @foreach ($reviewsItems as $review)
                     @php
                         $rating = max(1, min(5, (int) ($review['rating'] ?? 5)));
                     @endphp
 
                     <article class="flex h-full max-w-57.5 flex-col">
-                        <div class="mb-4 flex gap-3 text-[#D8B96F]">
+                        <div class="mb-4 flex gap-3 text-[#C8AC6F]">
                             @for ($i = 0; $i < $rating; $i++)
                                 <i class="fa-solid fa-star text-base leading-none"></i>
                             @endfor

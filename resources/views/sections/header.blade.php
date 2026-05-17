@@ -36,8 +36,7 @@
             class="absolute right-0 top-0 h-full w-[53%] bg-[#1C1D47] [clip-path:polygon(8%_0,100%_0,100%_100%,0_100%)]">
         </div>
 
-        <div
-            class="relative z-10 md:mx-37.5 flex h-full max-w-407.5 items-center justify-end md:justify-between px-6 md:px-0">
+        <div class="relative z-10 md:mx-37.5 flex h-full items-center justify-end md:justify-between px-6 md:px-0">
             {{-- Logo --}}
             <a href="{{ $logoUrl }}"
                 class="hidden md:block text-[24px] font-light leading-none tracking-[0.03em] text-white"

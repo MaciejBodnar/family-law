@@ -139,7 +139,7 @@
                         @if (function_exists('pll_current_language'))
                             @if (pll_current_language() === 'pl')
                                 {!! do_shortcode($contactFormShortcodePL) !!}
-                            @elseif (pll_current_language() === 'gb')
+                            @elseif (pll_current_language() === 'en')
                                 {!! do_shortcode($contactFormShortcodeEN) !!}
                             @elseif (pll_current_language() === 'fr')
                                 {!! do_shortcode($contactFormShortcodeFr) !!}

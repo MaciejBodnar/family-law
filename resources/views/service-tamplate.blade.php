@@ -116,7 +116,7 @@
                 class="mb-5 max-w-245   text-[44px] font-normal leading-[0.98] tracking-[-0.045em] text-[#1C1D47] md:text-[64px]">
                 {{ $serviceTitle }}
             </h1>
-            <p class="mb-12.25 max-w-212 text-base font-light leading-[1.55] text-[#1C1D47]/78">
+            <p class="mb-12.25 text-base font-light leading-[1.55] text-[#1C1D47]/78">
                 {{ $serviceIntro }}
             </p>
 
@@ -142,7 +142,7 @@
     </section>
 
     <section class="grid min-h-215 grid-cols-1 bg-[#FAFAF8] lg:grid-cols-2">
-        <div class="bg-[#FAFAF8] px-6 py-23 text-[#1C1D47] md:px-20 lg:px-0">
+        <div class="bg-[#FAFAF8] px-6 py-23 text-[#1C1D47] md:px-20 lg:px-0 flex items-center justify-center">
             <div class="mx-auto w-full max-w-155.5 lg:ml-47 lg:mr-0">
                 <div class="mb-4 flex">
                     <img src="{{ asset('resources/images/rec.svg') }}" alt="">
@@ -167,7 +167,7 @@
 
                             <div class="pb-3.5 pl-18 pr-22 pt-6">
                                 <p class="text-[18px] font-light leading-[1.7] tracking-[-0.015em] text-[#1C1D47]/38">
-                                    {{ $item['answer'] ?? '' }}
+                                    {!! $item['answer'] ?? '' !!}
                                 </p>
                             </div>
                         </details>

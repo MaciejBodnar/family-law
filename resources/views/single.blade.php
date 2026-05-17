@@ -91,7 +91,7 @@
         <article class="mt-19.5 bg-[#FAFAF8] text-[#1C1D47]">
             {{-- Hero --}}
             <section class="relative min-h-99.25">
-                <div class="mx-auto grid grid-cols-1 lg:grid-cols-[1fr_800px] justify-between">
+                <div class="mx-auto grid grid-cols-1 lg:grid-cols-[1fr_1fr] justify-between">
                     <div class="mx-14 pt-5.75 md:px-0 md:ml-37.5">
                         {{-- Breadcrumbs --}}
                         <div class="mb-22 max-w-75 text-[13px] font-light leading-[1.45] text-[#1C1D47]/25">
@@ -109,7 +109,7 @@
 
                         <h1
                             class="text-[48px] md:text-[64px] font-normal leading-normal tracking-[0.2] text-[#1C1D47] mb-10 md:mb-0">
-                            {{ $singlePostTitle }}
+                            {!! $singlePostTitle !!}
                         </h1>
                     </div>
 
