@@ -7,7 +7,7 @@ if (! function_exists('ewa_kodymowska_siola_language_options_post_id')) {
 
         return match ($language) {
             'bg', 'en' => 'header-footer-en',
-            'fr' => 'header-footer-fr',
+            'it' => 'header-footer-it',
             'pl' => 'header-footer-pl',
             default => 'header-footer-pl',
         };

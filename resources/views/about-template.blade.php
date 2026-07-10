@@ -270,8 +270,8 @@ Specjalizuje się w sprawach o wysokim stopniu konfliktu, w tym w reprezentacji 
         </div>
     </section>
 
-    <section class="min-h-192 bg-[#CBD7C9] text-[#1B2D18]">
-        <div class="mx-8 grid grid-cols-1 gap-20 px-6 pb-17.5 pt-28 md:mx-25.5 md:grid-cols-[300px_1fr] md:px-0">
+    <section class="bg-[#CBD7C9] text-[#1B2D18]">
+        <div class="mx-8 grid grid-cols-1 gap-20 px-6 py-28 md:mx-25.5 md:grid-cols-[300px_1fr] md:px-0">
             <div>
                 <div class="mb-4 flex">
                     <img src="{{ asset('resources/images/rec.svg') }}" alt="">

@@ -125,8 +125,43 @@
                 <div class="mx-auto px-6 md:px-0">
                     <div class="relative ml-0 border-l border-[#D8B96F] pb-0.5 pl-18 md:mx-37.5">
                         <div
-                            class="prose text-[16px] font-light leading-[1.65] text-[#1C1D47]/75 prose-p:mb-[25px] prose-p:leading-[1.65] prose-p:text-[#1C1D47]/75 prose-a:text-[#1C1D47] prose-strong:text-[#1C1D47]">
-                            {!! $singlePostContent ?: apply_filters('the_content', get_the_content()) !!}
+                            class="
+        text-[16px]
+        font-light
+        leading-[1.65]
+        text-[#1C1D47]/75
+
+        [&_h1]:mb-8
+        [&_h1]:text-[48px]
+        [&_h1]:font-normal
+        [&_h1]:leading-[1.15]
+        [&_h1]:text-[#1C1D47]
+
+        [&_h2]:mt-12
+        [&_h2]:mb-5
+        [&_h2]:text-[32px]
+        [&_h2]:font-normal
+        [&_h2]:leading-[1.2]
+        [&_h2]:text-[#1C1D47]
+
+        [&_p]:mb-3
+        [&_p]:font-light
+        [&_p]:leading-[1.65]
+        [&_p]:text-[#1C1D47]/75
+
+        [&_strong]:font-semibold
+        [&_strong]:text-[#1C1D47]
+
+        [&_a]:text-[#1C1D47]
+
+        [&_ul]:my-6
+        [&_ul]:list-disc
+        [&_ul]:pl-6
+
+        [&_li]:mb-2
+        [&_li]:text-[#1C1D47]/75
+    ">
+                            {!! $singlePostContent !!}
                         </div>
                     </div>
                 </div>
@@ -136,7 +171,7 @@
             @if ($navigationEnabled && $navigationPost)
                 <section class="bg-[#CBD7C9] py-22.5 text-[#1B2D18]">
                     <div
-                        class="mx-8 md:mx-37.5 grid grid-cols-1 gap-9.5 px-6 md:grid-cols-[155px_360px_1fr] md:gap-10 md:px-0">
+                        class="mx-8 md:mx-37.5 grid grid-cols-1 gap-9.5 px-6 lg:grid-cols-[155px_360px_1fr] md:gap-10 md:px-0">
                         <div>
                             <div class="mb-4 flex">
                                 <img src="{{ asset('resources/images/rec.svg') }}" alt="">
@@ -157,7 +192,7 @@
                                 class="h-full w-full object-cover grayscale">
                         </a>
 
-                        <div class="pt-7.75 md:ml-10 max-w-115">
+                        <div class="pt-7.75 md:ml-10 lg:max-w-115">
                             <h4 class="mb-3 text-[24px] font-light leading-[1.18] tracking-[-0.02em] text-[#1C1D47]">
                                 <a href="{{ get_permalink($navigationPost) }}">
                                     {{ get_the_title($navigationPost) }}

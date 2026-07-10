@@ -20,7 +20,7 @@ class ACFFieldProvider
                 [
                     ['page_title' => 'Header/Footer PL', 'menu_title' => 'Header/Footer PL', 'menu_slug' => 'header-footer-pl', 'post_id' => 'header-footer-pl'],
                     ['page_title' => 'Header/Footer EN', 'menu_title' => 'Header/Footer EN', 'menu_slug' => 'header-footer-en', 'post_id' => 'header-footer-en'],
-                    ['page_title' => 'Header/Footer FR', 'menu_title' => 'Header/Footer FR', 'menu_slug' => 'header-footer-fr', 'post_id' => 'header-footer-fr'],
+                    ['page_title' => 'Header/Footer IT', 'menu_title' => 'Header/Footer IT', 'menu_slug' => 'header-footer-it', 'post_id' => 'header-footer-it'],
                 ] as $optionsPage
             ) {
                 \acf_add_options_page($optionsPage + [
@@ -1140,9 +1140,9 @@ class ACFFieldProvider
                     'new_lines' => '',
                 ],
                 [
-                    'key' => 'field_contact_form_shortcode_fr',
-                    'label' => 'Form Shortcode (FR)',
-                    'name' => 'contact_form_shortcode_fr',
+                    'key' => 'field_contact_form_shortcode_it',
+                    'label' => 'Form Shortcode (IT)',
+                    'name' => 'contact_form_shortcode_it',
                     'type' => 'textarea',
                     'rows' => 4,
                     'new_lines' => '',
@@ -1449,7 +1449,7 @@ class ACFFieldProvider
                     [
                         'param' => 'options_page',
                         'operator' => '==',
-                        'value' => 'header-footer-fr',
+                        'value' => 'header-footer-it',
                     ],
                 ],
             ],

@@ -47,7 +47,7 @@
         $contactFormHeading = get_field('contact_form_heading') ?: 'Zostaw wiadomość';
         $contactFormShortcodePL = get_field('contact_form_shortcode_pl');
         $contactFormShortcodeEN = get_field('contact_form_shortcode_en');
-        $contactFormShortcodeFr = get_field('contact_form_shortcode_fr');
+        $contactFormShortcodeIt = get_field('contact_form_shortcode_it');
 
         $renderIcon = function ($icon) {
             if (!is_string($icon) || $icon === '') {
@@ -141,8 +141,8 @@
                                 {!! do_shortcode($contactFormShortcodePL) !!}
                             @elseif (pll_current_language() === 'en')
                                 {!! do_shortcode($contactFormShortcodeEN) !!}
-                            @elseif (pll_current_language() === 'fr')
-                                {!! do_shortcode($contactFormShortcodeFr) !!}
+                            @elseif (pll_current_language() === 'it')
+                                {!! do_shortcode($contactFormShortcodeIt) !!}
                             @else
                                 {!! do_shortcode('[contact-form-7 id="98d3aa4" title="Contact"]') !!}
                             @endif
@@ -159,10 +159,31 @@
                     {!! $mapEmbed !!}
                 </div>
             @elseif ($mapImageUrl) --}}
-        <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23297.202532494648!2d19.949305898755103!3d50.06759717462841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47165b23cb2743a7%3A0xe49e42a04dadc2f9!2sKielecka%206%2F4%2C%2031-526%20Krak%C3%B3w!5e0!3m2!1spl!2spl!4v1778534941469!5m2!1spl!2spl"
-            width="100%" height="376" style="border:0;" allowfullscreen="" loading="lazy"
-            referrerpolicy="no-referrer-when-downgrade"></iframe>
+        @if (function_exists('pll_current_language'))
+            @if (pll_current_language() === 'pl')
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23297.202532494648!2d19.949305898755103!3d50.06759717462841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47165b23cb2743a7%3A0xe49e42a04dadc2f9!2sKielecka%206%2F4%2C%2031-526%20Krak%C3%B3w!5e0!3m2!1spl!2spl!4v1778534941469!5m2!1spl!2spl"
+                    width="100%" height="376" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            @elseif (pll_current_language() === 'it')
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23297.202532494648!2d19.949305898755103!3d50.06759717462841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47165b23cb2743a7%3A0xe49e42a04dadc2f9!2sKielecka%206%2F4%2C%2031-526%20Krak%C3%B3w!5e0!3m2!1sit!2sit!4v1778534941469!5m2!1sit!2sit"
+                    width="100%" height="376" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            @elseif (pll_current_language() === 'en')
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23297.202532494648!2d19.949305898755103!3d50.06759717462841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47165b23cb2743a7%3A0xe49e42a04dadc2f9!2sKielecka%206%2F4%2C%2031-526%20Krak%C3%B3w!5e0!3m2!1sen!2sen!4v1778534941469!5m2!1sen!2sen"
+                    width="100%" height="376" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+            @else
+                <iframe
+                    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d23297.202532494648!2d19.949305898755103!3d50.06759717462841!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47165b23cb2743a7%3A0xe49e42a04dadc2f9!2sKielecka%206%2F4%2C%2031-526%20Krak%C3%B3w!5e0!3m2!1spl!2spl!4v1778534941469!5m2!1spl!2spl"
+                    width="100%" height="376" style="border:0;" allowfullscreen="" loading="lazy"
+                    referrerpolicy="no-referrer-when-downgrade"></iframe>
+            @endif
+        @endif
         {{-- @endif
         </div> --}}
     </section>
